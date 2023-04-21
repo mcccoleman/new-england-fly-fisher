@@ -3,7 +3,7 @@ import logo from "./logo.png";
 import styled from "styled-components";
 import { Flex } from "src/shared/components/Flex";
 
-export const StyledLogo = styled.img`
+const StyledLogo = styled.img`
   width: 150px;
   height: 150px;
 `;
