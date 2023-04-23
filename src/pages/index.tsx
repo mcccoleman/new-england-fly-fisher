@@ -1,8 +1,22 @@
 import type { HeadFC, PageProps } from "gatsby";
-import * as React from "react";
+import React, { FC } from "react";
 import { PageLayout } from "src/components/page-layout";
+import { graphql } from "gatsby";
+import { IndexQueryQuery as IndexQuery } from "graphql-types";
 
-const IndexPage: React.FC<PageProps> = () => <PageLayout></PageLayout>;
+export const indexQuery = graphql`
+  query IndexQuery {
+    ...PageLayout
+  }
+`;
+
+interface IndexProps extends PageProps {
+  data: IndexQuery;
+}
+
+const IndexPage: FC<IndexProps> = ({ data }) => (
+  <PageLayout data={data}></PageLayout>
+);
 
 export default IndexPage;
 

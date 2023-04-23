@@ -1,4 +1,5 @@
 import type { GatsbyConfig } from "gatsby";
+const path = require(`path`);
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -10,11 +11,21 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
+    "gatsby-plugin-graphql-codegen",
     "gatsby-plugin-root-import",
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: path.join(__dirname, `src`, `images`),
+      },
+    },
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/components/header/logo.png",
+        icon: "src/images/logo.png",
       },
     },
   ],

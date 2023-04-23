@@ -11,7 +11,8 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "src/*": ["./src/*"]
+      "src/*": ["./src/*"],
+      "graphql-types": ["./graphql-types.ts"]
     }
   },
   "include": [
