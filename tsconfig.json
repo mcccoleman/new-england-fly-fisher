@@ -12,7 +12,8 @@
     "baseUrl": "./",
     "paths": {
       "src/*": ["./src/*"],
-      "graphql-types": ["./graphql-types.ts"]
+      "graphql-types": ["./graphql-types.ts"],
+      "static/*": ["./static/*"]
     }
   },
   "include": [

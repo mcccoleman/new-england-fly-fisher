@@ -1,11 +1,11 @@
 import React, { FC, PropsWithChildren } from "react";
-
-import "./pageLayout.css";
 import { Header } from "../header";
-import styled from "styled-components";
-import { Flex } from "src/shared/components/Flex";
+import styled, { css } from "styled-components";
+import { Flex } from "src/components/flex";
 import { graphql } from "gatsby";
 import { PageLayoutFragment } from "graphql-types";
+
+import "./pageLayout.css";
 
 export const pageLayout = graphql`
   fragment PageLayout on Query {
@@ -13,14 +13,22 @@ export const pageLayout = graphql`
   }
 `;
 
-const PageLayoutWrapper = styled(Flex)`
+const sharedPaddingStyles = css`
   padding: 10px 150px;
-
   @media (max-width: 600px) {
     padding: 10px 10px;
   }
+`;
 
-  background-color: #6e8fc5;
+const PageContentWrapper = styled(Flex)`
+  ${sharedPaddingStyles}
+`;
+
+const HeaderWrapper = styled(Flex)`
+  ${sharedPaddingStyles}
+  background: url("/images/baxter.jpg");
+  background-attachment: fixed;
+}
 `;
 
 interface LayoutProps extends PropsWithChildren {
@@ -28,8 +36,10 @@ interface LayoutProps extends PropsWithChildren {
 }
 
 export const PageLayout: FC<LayoutProps> = ({ data, children }) => (
-  <PageLayoutWrapper column>
-    <Header data={data} />
-    {children}
-  </PageLayoutWrapper>
+  <Flex column>
+    <HeaderWrapper>
+      <Header data={data} />
+    </HeaderWrapper>
+    <PageContentWrapper>{children}</PageContentWrapper>
+  </Flex>
 );
