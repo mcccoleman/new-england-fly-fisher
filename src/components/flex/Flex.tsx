@@ -9,6 +9,7 @@ interface FlexProps {
     | "space-around"
     | "space-evenly";
   column?: boolean;
+  gap?: string;
 }
 
 export const Flex = styled.div<FlexProps>`
@@ -16,4 +17,5 @@ export const Flex = styled.div<FlexProps>`
   align-items: ${({ alignItems }) => alignItems || "unset"};
   justify-content: ${({ justifyContent }) => justifyContent || "unset"};
   flex-direction: ${({ column = false }) => (column ? "column" : "row")};
+  gap: ${({ gap }) => gap || "unset"};
 `;
