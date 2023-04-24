@@ -33,12 +33,17 @@ const HeaderWrapper = styled(Flex)`
 
 interface LayoutProps extends PropsWithChildren {
   data: PageLayoutFragment;
+  titleOverride?: string;
 }
 
-export const PageLayout: FC<LayoutProps> = ({ data, children }) => (
+export const PageLayout: FC<LayoutProps> = ({
+  titleOverride,
+  data,
+  children,
+}) => (
   <Flex column>
     <HeaderWrapper>
-      <Header data={data} />
+      <Header data={data} titleOverride={titleOverride} />
     </HeaderWrapper>
     <PageContentWrapper>{children}</PageContentWrapper>
   </Flex>
