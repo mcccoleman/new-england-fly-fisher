@@ -19,13 +19,13 @@ const config: GatsbyConfig = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: path.join(__dirname, `src`, `images`),
+        path: path.join(__dirname, `static`, `images`),
       },
     },
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/logo.png",
+        icon: "static/images/logo.png",
       },
     },
   ],

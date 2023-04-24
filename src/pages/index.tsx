@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import { PageLayout } from "src/components/page-layout";
 import { graphql } from "gatsby";
 import { IndexQueryQuery as IndexQuery } from "graphql-types";
+import { Flex } from "src/components/flex";
 
 export const indexQuery = graphql`
   query IndexQuery {
@@ -15,9 +16,11 @@ interface IndexProps extends PageProps {
 }
 
 const IndexPage: FC<IndexProps> = ({ data }) => (
-  <PageLayout data={data}></PageLayout>
+  <PageLayout data={data}>
+    <Flex column></Flex>
+  </PageLayout>
 );
 
 export default IndexPage;
 
-export const Head: HeadFC = () => <title>Home Page</title>;
+export const Head: HeadFC = () => <title>New England Fly Fisher</title>;
