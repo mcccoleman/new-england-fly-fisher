@@ -11,7 +11,12 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
-    "gatsby-plugin-graphql-codegen",
+    {
+      resolve: "gatsby-plugin-graphql-codegen",
+      options: {
+        codegen: false,
+      },
+    },
     "gatsby-plugin-root-import",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
