@@ -9,9 +9,17 @@ import { useOutsideClick } from "src/hooks/useOutsideClick";
 
 const StyledH4 = styled(H4)`
   cursor: pointer;
+  white-space: nowrap;
+`;
+
+const OuterMobileNavigationWrapper = styled(Flex)`
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 const MobileNavigationWrapper = styled(Flex)`
+  position: relative;
   display: none;
 
   @media (max-width: 600px) {
@@ -24,16 +32,15 @@ interface MobileNavLinkOptionsProps {
 }
 
 const MobileNavLinkOptions = styled(Flex)<MobileNavLinkOptionsProps>`
+  position: absolute;
   background: white;
-  position: fixed;
   right: 0;
   top: 0;
+  padding: 0 20px;
 `;
 
 const StyledHamburgerMenuWrapper = styled(Flex)`
-  position: relative;
-  right: 10px;
-  top: -50px;
+  padding: 30px;
 `;
 
 interface MobileNavigationProps {}
@@ -45,27 +52,30 @@ export const MobileNavigation: FC<MobileNavigationProps> = () => {
   useOutsideClick(impactRef, () => setOpen(false));
 
   return (
-    <MobileNavigationWrapper>
-      {isOpen ? (
-        <MobileNavLinkOptions
-          ref={
-            impactRef as unknown as ((
-              instance: HTMLDivElement | null
-            ) => void) &
-              React.MutableRefObject<undefined>
-          }
-        >
-          {NAVIGATION_LINKS.map(({ link, title }) => (
-            <StyledLink to={link} key={title}>
-              <StyledH4>{title}</StyledH4>
-            </StyledLink>
-          ))}
-        </MobileNavLinkOptions>
-      ) : (
-        <StyledHamburgerMenuWrapper>
-          <HamburgerMenu setOpen={setOpen} />
-        </StyledHamburgerMenuWrapper>
-      )}
-    </MobileNavigationWrapper>
+    <OuterMobileNavigationWrapper>
+      <MobileNavigationWrapper>
+        {isOpen ? (
+          <MobileNavLinkOptions
+            ref={
+              impactRef as unknown as ((
+                instance: HTMLDivElement | null
+              ) => void) &
+                React.MutableRefObject<undefined>
+            }
+            column
+          >
+            {NAVIGATION_LINKS.map(({ link, title }) => (
+              <StyledLink to={link} key={title}>
+                <StyledH4>{title}</StyledH4>
+              </StyledLink>
+            ))}
+          </MobileNavLinkOptions>
+        ) : (
+          <StyledHamburgerMenuWrapper>
+            <HamburgerMenu setOpen={setOpen} />
+          </StyledHamburgerMenuWrapper>
+        )}
+      </MobileNavigationWrapper>
+    </OuterMobileNavigationWrapper>
   );
 };
