@@ -1,6 +1,10 @@
 import type { GatsbyConfig } from "gatsby";
 const path = require(`path`);
 
+require("dotenv").config({
+  path: `.env`,
+});
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `new-england-fly-fisher`,
@@ -11,6 +15,15 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [process.env.GOOGLE_ANALYTICS_TRACKING_ID],
+        pluginConfig: {
+          head: true,
+        },
+      },
+    },
     {
       resolve: "gatsby-plugin-graphql-codegen",
       options: {
