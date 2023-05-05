@@ -1,6 +1,10 @@
 import type { GatsbyConfig } from "gatsby";
 const path = require(`path`);
 
+require("dotenv").config({
+  path: `.env`,
+});
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `new-england-fly-fisher`,
@@ -11,6 +15,22 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
+    {
+      resolve: "gatsby-plugin-google-analytics",
+      options: {
+        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+        head: false,
+        anonymize: true,
+        respectDNT: true,
+        exclude: [],
+        pageTransitionDelay: 0,
+        defer: false,
+        sampleRate: 5,
+        siteSpeedSampleRate: 10,
+        cookieDomain: "www.newenglandflyfisher.com",
+        enableWebVitalsTracking: true,
+      },
+    },
     {
       resolve: "gatsby-plugin-graphql-codegen",
       options: {
