@@ -73,4 +73,4 @@ const StockingReports: FC<StockingReportsProps> = ({ data }) => (
 
 export default StockingReports;
 
-export const Head: HeadFC = () => <title>New England Fly Fisher</title>;
+export const Head: HeadFC = () => <title>Stocking Reports</title>;
