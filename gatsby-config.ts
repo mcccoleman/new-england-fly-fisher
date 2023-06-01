@@ -16,6 +16,14 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
+    `gatsby-plugin-image`,
+    {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
         trackingIds: [process.env.GOOGLE_ANALYTICS_TRACKING_ID],
@@ -40,6 +48,8 @@ const config: GatsbyConfig = {
         path: path.join(__dirname, `static`, `images`),
       },
     },
+
+    "gatsby-transformer-remark",
     {
       resolve: "gatsby-plugin-manifest",
       options: {

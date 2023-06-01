@@ -3,14 +3,11 @@ import React, { FC } from "react";
 import { PageLayout } from "src/components/page-layout";
 import { graphql } from "gatsby";
 import { StockingReportQueryQuery as StockingReportQuery } from "graphql-types";
-import { Flex, ResponsiveFlex } from "src/components/flex";
+import { ResponsiveFlex } from "src/components/flex";
 import styled from "styled-components";
 import { PrimaryCard, SecondaryCard } from "src/components/cards";
 import { STOCKING_REPORT_CONTENT } from "src/page-content/stocking-reports/content";
-
-const StyledFlex = styled(ResponsiveFlex)`
-  margin-top: 40px;
-`;
+import { Paragraph } from "src/components/typography";
 
 const StyledSecondaryCard = styled(SecondaryCard)`
   @media (max-width: 600px) {
@@ -43,7 +40,7 @@ interface StockingReportsProps extends PageProps {
 
 const StockingReports: FC<StockingReportsProps> = ({ data }) => (
   <PageLayout data={data} titleOverride="Stocking Reports">
-    <StyledFlex justifyContent="space-between" alignItems="start">
+    <ResponsiveFlex justifyContent="space-between" alignItems="start">
       <StyledPrimaryCard column>
         Stocking fish is a controversial topic among some fly fishers. That
         said, many watch stocking reports to know when and where they'll have a
@@ -51,12 +48,12 @@ const StockingReports: FC<StockingReportsProps> = ({ data }) => (
         searching for easy-to-catch fish.
       </StyledPrimaryCard>
       <StyledSecondaryCard column>
-        <p>
+        <Paragraph>
           <u>State-Specific Stocking Details</u>
-        </p>
+        </Paragraph>
         {STOCKING_REPORT_CONTENT.map(({ state, links }) => (
           <>
-            <p>{state}</p>
+            <Paragraph>{state}</Paragraph>
             <ul>
               {links.map(({ title, link }) => (
                 <StyledA href={link} key={link}>
@@ -67,7 +64,7 @@ const StockingReports: FC<StockingReportsProps> = ({ data }) => (
           </>
         ))}
       </StyledSecondaryCard>
-    </StyledFlex>
+    </ResponsiveFlex>
   </PageLayout>
 );
 
