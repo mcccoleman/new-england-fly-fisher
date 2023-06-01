@@ -14,7 +14,7 @@ export const pageLayout = graphql`
 `;
 
 const sharedPaddingStyles = css`
-  padding: 10px 150px;
+  padding: 40px 150px 10px;
   @media (max-width: 600px) {
     padding: 10px 10px;
   }

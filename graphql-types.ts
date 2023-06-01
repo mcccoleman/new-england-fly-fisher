@@ -338,6 +338,278 @@ export type SiteBuildMetadataBuildTimeArgs = {
   locale?: InputMaybe<Scalars['String']>;
 };
 
+export type ContentfulEntry = {
+  contentful_id: Scalars['String'];
+  id: Scalars['ID'];
+  node_locale: Scalars['String'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+};
+
+export type ContentfulReference = {
+  contentful_id: Scalars['String'];
+  id: Scalars['ID'];
+};
+
+export type ContentfulAsset = ContentfulReference & Node & RemoteFile & {
+  contentful_id: Scalars['String'];
+  id: Scalars['ID'];
+  gatsbyImageData?: Maybe<Scalars['GatsbyImageData']>;
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  mimeType: Scalars['String'];
+  filename: Scalars['String'];
+  filesize?: Maybe<Scalars['Int']>;
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
+  publicUrl: Scalars['String'];
+  resize?: Maybe<RemoteFileResize>;
+  /** Data used in the <GatsbyImage /> component. See https://gatsby.dev/img for more info. */
+  gatsbyImage?: Maybe<Scalars['GatsbyImageData']>;
+};
+
+
+export type ContentfulAssetGatsbyImageDataArgs = {
+  layout?: InputMaybe<GatsbyImageLayout>;
+  width?: InputMaybe<Scalars['Int']>;
+  height?: InputMaybe<Scalars['Int']>;
+  aspectRatio?: InputMaybe<Scalars['Float']>;
+  placeholder?: InputMaybe<GatsbyImagePlaceholder>;
+  formats?: InputMaybe<Array<InputMaybe<GatsbyImageFormat>>>;
+  outputPixelDensities?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  breakpoints?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  sizes?: InputMaybe<Scalars['String']>;
+  backgroundColor?: InputMaybe<Scalars['String']>;
+  jpegProgressive?: InputMaybe<Scalars['Boolean']>;
+  resizingBehavior?: InputMaybe<ImageResizingBehavior>;
+  cropFocus?: InputMaybe<ContentfulImageCropFocus>;
+  cornerRadius?: InputMaybe<Scalars['Int']>;
+  quality?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type ContentfulAssetResizeArgs = {
+  width?: InputMaybe<Scalars['Int']>;
+  height?: InputMaybe<Scalars['Int']>;
+  aspectRatio?: InputMaybe<Scalars['Float']>;
+  fit?: InputMaybe<RemoteFileFit>;
+  format?: InputMaybe<RemoteFileFormat>;
+  cropFocus?: InputMaybe<Array<InputMaybe<RemoteFileCropFocus>>>;
+  quality?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type ContentfulAssetGatsbyImageArgs = {
+  layout?: InputMaybe<RemoteFileLayout>;
+  width?: InputMaybe<Scalars['Int']>;
+  height?: InputMaybe<Scalars['Int']>;
+  placeholder?: InputMaybe<RemoteFilePlaceholder>;
+  aspectRatio?: InputMaybe<Scalars['Float']>;
+  formats?: InputMaybe<Array<RemoteFileFormat>>;
+  outputPixelDensities?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  breakpoints?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  sizes?: InputMaybe<Scalars['String']>;
+  backgroundColor?: InputMaybe<Scalars['String']>;
+  fit?: InputMaybe<RemoteFileFit>;
+  cropFocus?: InputMaybe<Array<InputMaybe<RemoteFileCropFocus>>>;
+  quality?: InputMaybe<Scalars['Int']>;
+};
+
+/** Remote Interface */
+export type RemoteFile = {
+  id: Scalars['ID'];
+  mimeType: Scalars['String'];
+  filename: Scalars['String'];
+  filesize?: Maybe<Scalars['Int']>;
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
+  publicUrl: Scalars['String'];
+  resize?: Maybe<RemoteFileResize>;
+  /** Data used in the <GatsbyImage /> component. See https://gatsby.dev/img for more info. */
+  gatsbyImage?: Maybe<Scalars['GatsbyImageData']>;
+};
+
+
+/** Remote Interface */
+export type RemoteFileResizeArgs = {
+  width?: InputMaybe<Scalars['Int']>;
+  height?: InputMaybe<Scalars['Int']>;
+  aspectRatio?: InputMaybe<Scalars['Float']>;
+  fit?: InputMaybe<RemoteFileFit>;
+  format?: InputMaybe<RemoteFileFormat>;
+  cropFocus?: InputMaybe<Array<InputMaybe<RemoteFileCropFocus>>>;
+  quality?: InputMaybe<Scalars['Int']>;
+};
+
+
+/** Remote Interface */
+export type RemoteFileGatsbyImageArgs = {
+  layout?: InputMaybe<RemoteFileLayout>;
+  width?: InputMaybe<Scalars['Int']>;
+  height?: InputMaybe<Scalars['Int']>;
+  placeholder?: InputMaybe<RemoteFilePlaceholder>;
+  aspectRatio?: InputMaybe<Scalars['Float']>;
+  formats?: InputMaybe<Array<RemoteFileFormat>>;
+  outputPixelDensities?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  breakpoints?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  sizes?: InputMaybe<Scalars['String']>;
+  backgroundColor?: InputMaybe<Scalars['String']>;
+  fit?: InputMaybe<RemoteFileFit>;
+  cropFocus?: InputMaybe<Array<InputMaybe<RemoteFileCropFocus>>>;
+  quality?: InputMaybe<Scalars['Int']>;
+};
+
+export type RemoteFileResize = {
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
+  src?: Maybe<Scalars['String']>;
+};
+
+export type RemoteFileFit =
+  | 'COVER'
+  | 'FILL'
+  | 'OUTSIDE'
+  | 'CONTAIN';
+
+export type RemoteFileFormat =
+  | 'AUTO'
+  | 'JPG'
+  | 'PNG'
+  | 'WEBP'
+  | 'AVIF';
+
+export type RemoteFileCropFocus =
+  | 'CENTER'
+  | 'TOP'
+  | 'RIGHT'
+  | 'BOTTOM'
+  | 'LEFT'
+  | 'ENTROPY'
+  | 'EDGES'
+  | 'FACES';
+
+export type RemoteFileLayout =
+  | 'FIXED'
+  | 'FULL_WIDTH'
+  | 'CONSTRAINED';
+
+export type RemoteFilePlaceholder =
+  | 'DOMINANT_COLOR'
+  | 'BLURRED'
+  | 'TRACED_SVG'
+  | 'NONE';
+
+export type ImageResizingBehavior =
+  | 'NO_CHANGE'
+  /** Same as the default resizing, but adds padding so that the generated image has the specified dimensions. */
+  | 'PAD'
+  /** Crop a part of the original image to match the specified size. */
+  | 'CROP'
+  /** Crop the image to the specified dimensions, if the original image is smaller than these dimensions, then the image will be upscaled. */
+  | 'FILL'
+  /** When used in association with the f parameter below, creates a thumbnail from the image based on a focus area. */
+  | 'THUMB'
+  /** Scale the image regardless of the original aspect ratio. */
+  | 'SCALE';
+
+export type ContentfulImageCropFocus =
+  | 'TOP'
+  | 'TOP_LEFT'
+  | 'TOP_RIGHT'
+  | 'BOTTOM'
+  | 'BOTTOM_RIGHT'
+  | 'BOTTOM_LEFT'
+  | 'RIGHT'
+  | 'LEFT'
+  | 'FACE'
+  | 'FACES'
+  | 'CENTER';
+
+export type ContentfulPosts = ContentfulReference & ContentfulEntry & Node & {
+  contentful_id: Scalars['String'];
+  id: Scalars['ID'];
+  node_locale: Scalars['String'];
+  route?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  author?: Maybe<Scalars['String']>;
+  postBody?: Maybe<ContentfulPostsPostBodyTextNode>;
+  spaceId?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['Date']>;
+  sys?: Maybe<ContentfulPostsSys>;
+  excerpt?: Maybe<ContentfulPostsExcerptTextNode>;
+  gatsbyPath?: Maybe<Scalars['String']>;
+  /** Returns all children nodes filtered by type contentfulPostsPostBodyTextNode */
+  childrenContentfulPostsPostBodyTextNode?: Maybe<Array<Maybe<ContentfulPostsPostBodyTextNode>>>;
+  /** Returns the first child node of type contentfulPostsPostBodyTextNode or null if there are no children of given type on this node */
+  childContentfulPostsPostBodyTextNode?: Maybe<ContentfulPostsPostBodyTextNode>;
+  /** Returns all children nodes filtered by type contentfulPostsExcerptTextNode */
+  childrenContentfulPostsExcerptTextNode?: Maybe<Array<Maybe<ContentfulPostsExcerptTextNode>>>;
+  /** Returns the first child node of type contentfulPostsExcerptTextNode or null if there are no children of given type on this node */
+  childContentfulPostsExcerptTextNode?: Maybe<ContentfulPostsExcerptTextNode>;
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+};
+
+
+export type ContentfulPostsCreatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type ContentfulPostsUpdatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type ContentfulPostsGatsbyPathArgs = {
+  filePath?: InputMaybe<Scalars['String']>;
+};
+
+export type ContentfulPostsSys = {
+  type?: Maybe<Scalars['String']>;
+  revision?: Maybe<Scalars['Int']>;
+  contentType?: Maybe<ContentfulPostsSysContentType>;
+};
+
+export type ContentfulPostsSysContentType = {
+  sys?: Maybe<ContentfulPostsSysContentTypeSys>;
+};
+
+export type ContentfulPostsSysContentTypeSys = {
+  type?: Maybe<Scalars['String']>;
+  linkType?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+};
+
+export type GatsbyImageFormat =
+  | 'NO_CHANGE'
+  | 'AUTO'
+  | 'JPG'
+  | 'PNG'
+  | 'WEBP'
+  | 'AVIF';
+
+export type GatsbyImageLayout =
+  | 'FIXED'
+  | 'FULL_WIDTH'
+  | 'CONSTRAINED';
+
+export type GatsbyImagePlaceholder =
+  | 'DOMINANT_COLOR'
+  | 'TRACED_SVG'
+  | 'BLURRED'
+  | 'NONE';
+
 export type ImageFormat =
   | 'NO_CHANGE'
   | 'AUTO'
@@ -587,6 +859,127 @@ export type ImageSharpResize = {
   originalName?: Maybe<Scalars['String']>;
 };
 
+export type MarkdownHeading = {
+  id?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+  depth?: Maybe<Scalars['Int']>;
+};
+
+export type MarkdownHeadingLevels =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6';
+
+export type MarkdownExcerptFormats =
+  | 'PLAIN'
+  | 'HTML'
+  | 'MARKDOWN';
+
+export type MarkdownWordCount = {
+  paragraphs?: Maybe<Scalars['Int']>;
+  sentences?: Maybe<Scalars['Int']>;
+  words?: Maybe<Scalars['Int']>;
+};
+
+export type MarkdownRemark = Node & {
+  id: Scalars['ID'];
+  frontmatter?: Maybe<MarkdownRemarkFrontmatter>;
+  excerpt?: Maybe<Scalars['String']>;
+  rawMarkdownBody?: Maybe<Scalars['String']>;
+  html?: Maybe<Scalars['String']>;
+  htmlAst?: Maybe<Scalars['JSON']>;
+  excerptAst?: Maybe<Scalars['JSON']>;
+  headings?: Maybe<Array<Maybe<MarkdownHeading>>>;
+  timeToRead?: Maybe<Scalars['Int']>;
+  tableOfContents?: Maybe<Scalars['String']>;
+  wordCount?: Maybe<MarkdownWordCount>;
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+};
+
+
+export type MarkdownRemarkExcerptArgs = {
+  pruneLength?: InputMaybe<Scalars['Int']>;
+  truncate?: InputMaybe<Scalars['Boolean']>;
+  format?: InputMaybe<MarkdownExcerptFormats>;
+};
+
+
+export type MarkdownRemarkExcerptAstArgs = {
+  pruneLength?: InputMaybe<Scalars['Int']>;
+  truncate?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MarkdownRemarkHeadingsArgs = {
+  depth?: InputMaybe<MarkdownHeadingLevels>;
+};
+
+
+export type MarkdownRemarkTableOfContentsArgs = {
+  absolute?: InputMaybe<Scalars['Boolean']>;
+  pathToSlugField?: InputMaybe<Scalars['String']>;
+  maxDepth?: InputMaybe<Scalars['Int']>;
+  heading?: InputMaybe<Scalars['String']>;
+};
+
+export type MarkdownRemarkFrontmatter = {
+  title?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulPostsPostBodyTextNode = Node & {
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  postBody?: Maybe<Scalars['String']>;
+  sys?: Maybe<ContentfulPostsPostBodyTextNodeSys>;
+  /** Returns all children nodes filtered by type MarkdownRemark */
+  childrenMarkdownRemark?: Maybe<Array<Maybe<MarkdownRemark>>>;
+  /** Returns the first child node of type MarkdownRemark or null if there are no children of given type on this node */
+  childMarkdownRemark?: Maybe<MarkdownRemark>;
+};
+
+export type ContentfulPostsPostBodyTextNodeSys = {
+  type?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulPostsExcerptTextNode = Node & {
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  excerpt?: Maybe<Scalars['String']>;
+  sys?: Maybe<ContentfulPostsExcerptTextNodeSys>;
+  /** Returns all children nodes filtered by type MarkdownRemark */
+  childrenMarkdownRemark?: Maybe<Array<Maybe<MarkdownRemark>>>;
+  /** Returns the first child node of type MarkdownRemark or null if there are no children of given type on this node */
+  childMarkdownRemark?: Maybe<MarkdownRemark>;
+};
+
+export type ContentfulPostsExcerptTextNodeSys = {
+  type?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulContentType = Node & {
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  name?: Maybe<Scalars['String']>;
+  displayField?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  sys?: Maybe<ContentfulContentTypeSys>;
+};
+
+export type ContentfulContentTypeSys = {
+  type?: Maybe<Scalars['String']>;
+};
+
 export type Query = {
   file?: Maybe<File>;
   allFile: FileConnection;
@@ -602,8 +995,22 @@ export type Query = {
   allSitePlugin: SitePluginConnection;
   siteBuildMetadata?: Maybe<SiteBuildMetadata>;
   allSiteBuildMetadata: SiteBuildMetadataConnection;
+  contentfulEntry?: Maybe<ContentfulEntry>;
+  allContentfulEntry: ContentfulEntryConnection;
+  contentfulAsset?: Maybe<ContentfulAsset>;
+  allContentfulAsset: ContentfulAssetConnection;
+  contentfulPosts?: Maybe<ContentfulPosts>;
+  allContentfulPosts: ContentfulPostsConnection;
   imageSharp?: Maybe<ImageSharp>;
   allImageSharp: ImageSharpConnection;
+  markdownRemark?: Maybe<MarkdownRemark>;
+  allMarkdownRemark: MarkdownRemarkConnection;
+  contentfulPostsPostBodyTextNode?: Maybe<ContentfulPostsPostBodyTextNode>;
+  allContentfulPostsPostBodyTextNode: ContentfulPostsPostBodyTextNodeConnection;
+  contentfulPostsExcerptTextNode?: Maybe<ContentfulPostsExcerptTextNode>;
+  allContentfulPostsExcerptTextNode: ContentfulPostsExcerptTextNodeConnection;
+  contentfulContentType?: Maybe<ContentfulContentType>;
+  allContentfulContentType: ContentfulContentTypeConnection;
 };
 
 
@@ -819,6 +1226,82 @@ export type QueryAllSiteBuildMetadataArgs = {
 };
 
 
+export type QueryContentfulEntryArgs = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+
+export type QueryAllContentfulEntryArgs = {
+  filter?: InputMaybe<ContentfulEntryFilterInput>;
+  sort?: InputMaybe<Array<InputMaybe<ContentfulEntrySortInput>>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryContentfulAssetArgs = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  gatsbyImageData?: InputMaybe<GatsbyImageDataQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  mimeType?: InputMaybe<StringQueryOperatorInput>;
+  filename?: InputMaybe<StringQueryOperatorInput>;
+  filesize?: InputMaybe<IntQueryOperatorInput>;
+  width?: InputMaybe<IntQueryOperatorInput>;
+  height?: InputMaybe<IntQueryOperatorInput>;
+  publicUrl?: InputMaybe<StringQueryOperatorInput>;
+  resize?: InputMaybe<RemoteFileResizeFilterInput>;
+  gatsbyImage?: InputMaybe<GatsbyImageDataQueryOperatorInput>;
+};
+
+
+export type QueryAllContentfulAssetArgs = {
+  filter?: InputMaybe<ContentfulAssetFilterInput>;
+  sort?: InputMaybe<Array<InputMaybe<ContentfulAssetSortInput>>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryContentfulPostsArgs = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  route?: InputMaybe<StringQueryOperatorInput>;
+  title?: InputMaybe<StringQueryOperatorInput>;
+  author?: InputMaybe<StringQueryOperatorInput>;
+  postBody?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulPostsSysFilterInput>;
+  excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
+  gatsbyPath?: InputMaybe<StringQueryOperatorInput>;
+  childrenContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterListInput>;
+  childContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
+  childrenContentfulPostsExcerptTextNode?: InputMaybe<ContentfulPostsExcerptTextNodeFilterListInput>;
+  childContentfulPostsExcerptTextNode?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+
+export type QueryAllContentfulPostsArgs = {
+  filter?: InputMaybe<ContentfulPostsFilterInput>;
+  sort?: InputMaybe<Array<InputMaybe<ContentfulPostsSortInput>>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
 export type QueryImageSharpArgs = {
   fixed?: InputMaybe<ImageSharpFixedFilterInput>;
   fluid?: InputMaybe<ImageSharpFluidFilterInput>;
@@ -835,6 +1318,92 @@ export type QueryImageSharpArgs = {
 export type QueryAllImageSharpArgs = {
   filter?: InputMaybe<ImageSharpFilterInput>;
   sort?: InputMaybe<Array<InputMaybe<ImageSharpSortInput>>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryMarkdownRemarkArgs = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterFilterInput>;
+  excerpt?: InputMaybe<StringQueryOperatorInput>;
+  rawMarkdownBody?: InputMaybe<StringQueryOperatorInput>;
+  html?: InputMaybe<StringQueryOperatorInput>;
+  htmlAst?: InputMaybe<JsonQueryOperatorInput>;
+  excerptAst?: InputMaybe<JsonQueryOperatorInput>;
+  headings?: InputMaybe<MarkdownHeadingFilterListInput>;
+  timeToRead?: InputMaybe<IntQueryOperatorInput>;
+  tableOfContents?: InputMaybe<StringQueryOperatorInput>;
+  wordCount?: InputMaybe<MarkdownWordCountFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+
+export type QueryAllMarkdownRemarkArgs = {
+  filter?: InputMaybe<MarkdownRemarkFilterInput>;
+  sort?: InputMaybe<Array<InputMaybe<MarkdownRemarkSortInput>>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryContentfulPostsPostBodyTextNodeArgs = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  postBody?: InputMaybe<StringQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulPostsPostBodyTextNodeSysFilterInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
+};
+
+
+export type QueryAllContentfulPostsPostBodyTextNodeArgs = {
+  filter?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
+  sort?: InputMaybe<Array<InputMaybe<ContentfulPostsPostBodyTextNodeSortInput>>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryContentfulPostsExcerptTextNodeArgs = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  excerpt?: InputMaybe<StringQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulPostsExcerptTextNodeSysFilterInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
+};
+
+
+export type QueryAllContentfulPostsExcerptTextNodeArgs = {
+  filter?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
+  sort?: InputMaybe<Array<InputMaybe<ContentfulPostsExcerptTextNodeSortInput>>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryContentfulContentTypeArgs = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  name?: InputMaybe<StringQueryOperatorInput>;
+  displayField?: InputMaybe<StringQueryOperatorInput>;
+  description?: InputMaybe<StringQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulContentTypeSysFilterInput>;
+};
+
+
+export type QueryAllContentfulContentTypeArgs = {
+  filter?: InputMaybe<ContentfulContentTypeFilterInput>;
+  sort?: InputMaybe<Array<InputMaybe<ContentfulContentTypeSortInput>>>;
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
 };
@@ -2236,6 +2805,682 @@ export type SiteBuildMetadataSortInput = {
   internal?: InputMaybe<InternalSortInput>;
 };
 
+export type ContentfulEntryConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulEntryEdge>;
+  nodes: Array<ContentfulEntry>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulEntryGroupConnection>;
+};
+
+
+export type ContentfulEntryConnectionDistinctArgs = {
+  field: ContentfulEntryFieldSelector;
+};
+
+
+export type ContentfulEntryConnectionMaxArgs = {
+  field: ContentfulEntryFieldSelector;
+};
+
+
+export type ContentfulEntryConnectionMinArgs = {
+  field: ContentfulEntryFieldSelector;
+};
+
+
+export type ContentfulEntryConnectionSumArgs = {
+  field: ContentfulEntryFieldSelector;
+};
+
+
+export type ContentfulEntryConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulEntryFieldSelector;
+};
+
+export type ContentfulEntryEdge = {
+  next?: Maybe<ContentfulEntry>;
+  node: ContentfulEntry;
+  previous?: Maybe<ContentfulEntry>;
+};
+
+export type ContentfulEntryFieldSelector = {
+  contentful_id?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+  node_locale?: InputMaybe<FieldSelectorEnum>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+};
+
+export type ContentfulEntryGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulEntryEdge>;
+  nodes: Array<ContentfulEntry>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulEntryGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentfulEntryGroupConnectionDistinctArgs = {
+  field: ContentfulEntryFieldSelector;
+};
+
+
+export type ContentfulEntryGroupConnectionMaxArgs = {
+  field: ContentfulEntryFieldSelector;
+};
+
+
+export type ContentfulEntryGroupConnectionMinArgs = {
+  field: ContentfulEntryFieldSelector;
+};
+
+
+export type ContentfulEntryGroupConnectionSumArgs = {
+  field: ContentfulEntryFieldSelector;
+};
+
+
+export type ContentfulEntryGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulEntryFieldSelector;
+};
+
+export type ContentfulEntryFilterInput = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type ContentfulEntrySortInput = {
+  contentful_id?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+  node_locale?: InputMaybe<SortOrderEnum>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+};
+
+export type RemoteFileResizeFilterInput = {
+  width?: InputMaybe<IntQueryOperatorInput>;
+  height?: InputMaybe<IntQueryOperatorInput>;
+  src?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulAssetConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulAssetEdge>;
+  nodes: Array<ContentfulAsset>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulAssetGroupConnection>;
+};
+
+
+export type ContentfulAssetConnectionDistinctArgs = {
+  field: ContentfulAssetFieldSelector;
+};
+
+
+export type ContentfulAssetConnectionMaxArgs = {
+  field: ContentfulAssetFieldSelector;
+};
+
+
+export type ContentfulAssetConnectionMinArgs = {
+  field: ContentfulAssetFieldSelector;
+};
+
+
+export type ContentfulAssetConnectionSumArgs = {
+  field: ContentfulAssetFieldSelector;
+};
+
+
+export type ContentfulAssetConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulAssetFieldSelector;
+};
+
+export type ContentfulAssetEdge = {
+  next?: Maybe<ContentfulAsset>;
+  node: ContentfulAsset;
+  previous?: Maybe<ContentfulAsset>;
+};
+
+export type ContentfulAssetFieldSelector = {
+  contentful_id?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+  gatsbyImageData?: InputMaybe<FieldSelectorEnum>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+  mimeType?: InputMaybe<FieldSelectorEnum>;
+  filename?: InputMaybe<FieldSelectorEnum>;
+  filesize?: InputMaybe<FieldSelectorEnum>;
+  width?: InputMaybe<FieldSelectorEnum>;
+  height?: InputMaybe<FieldSelectorEnum>;
+  publicUrl?: InputMaybe<FieldSelectorEnum>;
+  resize?: InputMaybe<RemoteFileResizeFieldSelector>;
+  gatsbyImage?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type RemoteFileResizeFieldSelector = {
+  width?: InputMaybe<FieldSelectorEnum>;
+  height?: InputMaybe<FieldSelectorEnum>;
+  src?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulAssetGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulAssetEdge>;
+  nodes: Array<ContentfulAsset>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulAssetGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentfulAssetGroupConnectionDistinctArgs = {
+  field: ContentfulAssetFieldSelector;
+};
+
+
+export type ContentfulAssetGroupConnectionMaxArgs = {
+  field: ContentfulAssetFieldSelector;
+};
+
+
+export type ContentfulAssetGroupConnectionMinArgs = {
+  field: ContentfulAssetFieldSelector;
+};
+
+
+export type ContentfulAssetGroupConnectionSumArgs = {
+  field: ContentfulAssetFieldSelector;
+};
+
+
+export type ContentfulAssetGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulAssetFieldSelector;
+};
+
+export type ContentfulAssetFilterInput = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  gatsbyImageData?: InputMaybe<GatsbyImageDataQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  mimeType?: InputMaybe<StringQueryOperatorInput>;
+  filename?: InputMaybe<StringQueryOperatorInput>;
+  filesize?: InputMaybe<IntQueryOperatorInput>;
+  width?: InputMaybe<IntQueryOperatorInput>;
+  height?: InputMaybe<IntQueryOperatorInput>;
+  publicUrl?: InputMaybe<StringQueryOperatorInput>;
+  resize?: InputMaybe<RemoteFileResizeFilterInput>;
+  gatsbyImage?: InputMaybe<GatsbyImageDataQueryOperatorInput>;
+};
+
+export type ContentfulAssetSortInput = {
+  contentful_id?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+  gatsbyImageData?: InputMaybe<SortOrderEnum>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+  mimeType?: InputMaybe<SortOrderEnum>;
+  filename?: InputMaybe<SortOrderEnum>;
+  filesize?: InputMaybe<SortOrderEnum>;
+  width?: InputMaybe<SortOrderEnum>;
+  height?: InputMaybe<SortOrderEnum>;
+  publicUrl?: InputMaybe<SortOrderEnum>;
+  resize?: InputMaybe<RemoteFileResizeSortInput>;
+  gatsbyImage?: InputMaybe<SortOrderEnum>;
+};
+
+export type RemoteFileResizeSortInput = {
+  width?: InputMaybe<SortOrderEnum>;
+  height?: InputMaybe<SortOrderEnum>;
+  src?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulPostsPostBodyTextNodeFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  postBody?: InputMaybe<StringQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulPostsPostBodyTextNodeSysFilterInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
+};
+
+export type ContentfulPostsPostBodyTextNodeSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type MarkdownRemarkFilterListInput = {
+  elemMatch?: InputMaybe<MarkdownRemarkFilterInput>;
+};
+
+export type MarkdownRemarkFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterFilterInput>;
+  excerpt?: InputMaybe<StringQueryOperatorInput>;
+  rawMarkdownBody?: InputMaybe<StringQueryOperatorInput>;
+  html?: InputMaybe<StringQueryOperatorInput>;
+  htmlAst?: InputMaybe<JsonQueryOperatorInput>;
+  excerptAst?: InputMaybe<JsonQueryOperatorInput>;
+  headings?: InputMaybe<MarkdownHeadingFilterListInput>;
+  timeToRead?: InputMaybe<IntQueryOperatorInput>;
+  tableOfContents?: InputMaybe<StringQueryOperatorInput>;
+  wordCount?: InputMaybe<MarkdownWordCountFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type MarkdownRemarkFrontmatterFilterInput = {
+  title?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type MarkdownHeadingFilterListInput = {
+  elemMatch?: InputMaybe<MarkdownHeadingFilterInput>;
+};
+
+export type MarkdownHeadingFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  value?: InputMaybe<StringQueryOperatorInput>;
+  depth?: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type MarkdownWordCountFilterInput = {
+  paragraphs?: InputMaybe<IntQueryOperatorInput>;
+  sentences?: InputMaybe<IntQueryOperatorInput>;
+  words?: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type ContentfulPostsSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  revision?: InputMaybe<IntQueryOperatorInput>;
+  contentType?: InputMaybe<ContentfulPostsSysContentTypeFilterInput>;
+};
+
+export type ContentfulPostsSysContentTypeFilterInput = {
+  sys?: InputMaybe<ContentfulPostsSysContentTypeSysFilterInput>;
+};
+
+export type ContentfulPostsSysContentTypeSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  linkType?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulPostsExcerptTextNodeFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  excerpt?: InputMaybe<StringQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulPostsExcerptTextNodeSysFilterInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
+};
+
+export type ContentfulPostsExcerptTextNodeSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulPostsPostBodyTextNodeFilterListInput = {
+  elemMatch?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
+};
+
+export type ContentfulPostsExcerptTextNodeFilterListInput = {
+  elemMatch?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
+};
+
+export type ContentfulPostsConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulPostsEdge>;
+  nodes: Array<ContentfulPosts>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulPostsGroupConnection>;
+};
+
+
+export type ContentfulPostsConnectionDistinctArgs = {
+  field: ContentfulPostsFieldSelector;
+};
+
+
+export type ContentfulPostsConnectionMaxArgs = {
+  field: ContentfulPostsFieldSelector;
+};
+
+
+export type ContentfulPostsConnectionMinArgs = {
+  field: ContentfulPostsFieldSelector;
+};
+
+
+export type ContentfulPostsConnectionSumArgs = {
+  field: ContentfulPostsFieldSelector;
+};
+
+
+export type ContentfulPostsConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulPostsFieldSelector;
+};
+
+export type ContentfulPostsEdge = {
+  next?: Maybe<ContentfulPosts>;
+  node: ContentfulPosts;
+  previous?: Maybe<ContentfulPosts>;
+};
+
+export type ContentfulPostsFieldSelector = {
+  contentful_id?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+  node_locale?: InputMaybe<FieldSelectorEnum>;
+  route?: InputMaybe<FieldSelectorEnum>;
+  title?: InputMaybe<FieldSelectorEnum>;
+  author?: InputMaybe<FieldSelectorEnum>;
+  postBody?: InputMaybe<ContentfulPostsPostBodyTextNodeFieldSelector>;
+  spaceId?: InputMaybe<FieldSelectorEnum>;
+  createdAt?: InputMaybe<FieldSelectorEnum>;
+  updatedAt?: InputMaybe<FieldSelectorEnum>;
+  sys?: InputMaybe<ContentfulPostsSysFieldSelector>;
+  excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeFieldSelector>;
+  gatsbyPath?: InputMaybe<FieldSelectorEnum>;
+  childrenContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFieldSelector>;
+  childContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFieldSelector>;
+  childrenContentfulPostsExcerptTextNode?: InputMaybe<ContentfulPostsExcerptTextNodeFieldSelector>;
+  childContentfulPostsExcerptTextNode?: InputMaybe<ContentfulPostsExcerptTextNodeFieldSelector>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+};
+
+export type ContentfulPostsPostBodyTextNodeFieldSelector = {
+  id?: InputMaybe<FieldSelectorEnum>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+  postBody?: InputMaybe<FieldSelectorEnum>;
+  sys?: InputMaybe<ContentfulPostsPostBodyTextNodeSysFieldSelector>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
+};
+
+export type ContentfulPostsPostBodyTextNodeSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type MarkdownRemarkFieldSelector = {
+  id?: InputMaybe<FieldSelectorEnum>;
+  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterFieldSelector>;
+  excerpt?: InputMaybe<FieldSelectorEnum>;
+  rawMarkdownBody?: InputMaybe<FieldSelectorEnum>;
+  html?: InputMaybe<FieldSelectorEnum>;
+  htmlAst?: InputMaybe<FieldSelectorEnum>;
+  excerptAst?: InputMaybe<FieldSelectorEnum>;
+  headings?: InputMaybe<MarkdownHeadingFieldSelector>;
+  timeToRead?: InputMaybe<FieldSelectorEnum>;
+  tableOfContents?: InputMaybe<FieldSelectorEnum>;
+  wordCount?: InputMaybe<MarkdownWordCountFieldSelector>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+};
+
+export type MarkdownRemarkFrontmatterFieldSelector = {
+  title?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type MarkdownHeadingFieldSelector = {
+  id?: InputMaybe<FieldSelectorEnum>;
+  value?: InputMaybe<FieldSelectorEnum>;
+  depth?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type MarkdownWordCountFieldSelector = {
+  paragraphs?: InputMaybe<FieldSelectorEnum>;
+  sentences?: InputMaybe<FieldSelectorEnum>;
+  words?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulPostsSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  revision?: InputMaybe<FieldSelectorEnum>;
+  contentType?: InputMaybe<ContentfulPostsSysContentTypeFieldSelector>;
+};
+
+export type ContentfulPostsSysContentTypeFieldSelector = {
+  sys?: InputMaybe<ContentfulPostsSysContentTypeSysFieldSelector>;
+};
+
+export type ContentfulPostsSysContentTypeSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  linkType?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulPostsExcerptTextNodeFieldSelector = {
+  id?: InputMaybe<FieldSelectorEnum>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+  excerpt?: InputMaybe<FieldSelectorEnum>;
+  sys?: InputMaybe<ContentfulPostsExcerptTextNodeSysFieldSelector>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
+};
+
+export type ContentfulPostsExcerptTextNodeSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulPostsGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulPostsEdge>;
+  nodes: Array<ContentfulPosts>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulPostsGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentfulPostsGroupConnectionDistinctArgs = {
+  field: ContentfulPostsFieldSelector;
+};
+
+
+export type ContentfulPostsGroupConnectionMaxArgs = {
+  field: ContentfulPostsFieldSelector;
+};
+
+
+export type ContentfulPostsGroupConnectionMinArgs = {
+  field: ContentfulPostsFieldSelector;
+};
+
+
+export type ContentfulPostsGroupConnectionSumArgs = {
+  field: ContentfulPostsFieldSelector;
+};
+
+
+export type ContentfulPostsGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulPostsFieldSelector;
+};
+
+export type ContentfulPostsFilterInput = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  route?: InputMaybe<StringQueryOperatorInput>;
+  title?: InputMaybe<StringQueryOperatorInput>;
+  author?: InputMaybe<StringQueryOperatorInput>;
+  postBody?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulPostsSysFilterInput>;
+  excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
+  gatsbyPath?: InputMaybe<StringQueryOperatorInput>;
+  childrenContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterListInput>;
+  childContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
+  childrenContentfulPostsExcerptTextNode?: InputMaybe<ContentfulPostsExcerptTextNodeFilterListInput>;
+  childContentfulPostsExcerptTextNode?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type ContentfulPostsSortInput = {
+  contentful_id?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+  node_locale?: InputMaybe<SortOrderEnum>;
+  route?: InputMaybe<SortOrderEnum>;
+  title?: InputMaybe<SortOrderEnum>;
+  author?: InputMaybe<SortOrderEnum>;
+  postBody?: InputMaybe<ContentfulPostsPostBodyTextNodeSortInput>;
+  spaceId?: InputMaybe<SortOrderEnum>;
+  createdAt?: InputMaybe<SortOrderEnum>;
+  updatedAt?: InputMaybe<SortOrderEnum>;
+  sys?: InputMaybe<ContentfulPostsSysSortInput>;
+  excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeSortInput>;
+  gatsbyPath?: InputMaybe<SortOrderEnum>;
+  childrenContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeSortInput>;
+  childContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeSortInput>;
+  childrenContentfulPostsExcerptTextNode?: InputMaybe<ContentfulPostsExcerptTextNodeSortInput>;
+  childContentfulPostsExcerptTextNode?: InputMaybe<ContentfulPostsExcerptTextNodeSortInput>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+};
+
+export type ContentfulPostsPostBodyTextNodeSortInput = {
+  id?: InputMaybe<SortOrderEnum>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+  postBody?: InputMaybe<SortOrderEnum>;
+  sys?: InputMaybe<ContentfulPostsPostBodyTextNodeSysSortInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
+};
+
+export type ContentfulPostsPostBodyTextNodeSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+};
+
+export type MarkdownRemarkSortInput = {
+  id?: InputMaybe<SortOrderEnum>;
+  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterSortInput>;
+  excerpt?: InputMaybe<SortOrderEnum>;
+  rawMarkdownBody?: InputMaybe<SortOrderEnum>;
+  html?: InputMaybe<SortOrderEnum>;
+  htmlAst?: InputMaybe<SortOrderEnum>;
+  excerptAst?: InputMaybe<SortOrderEnum>;
+  headings?: InputMaybe<MarkdownHeadingSortInput>;
+  timeToRead?: InputMaybe<SortOrderEnum>;
+  tableOfContents?: InputMaybe<SortOrderEnum>;
+  wordCount?: InputMaybe<MarkdownWordCountSortInput>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+};
+
+export type MarkdownRemarkFrontmatterSortInput = {
+  title?: InputMaybe<SortOrderEnum>;
+};
+
+export type MarkdownHeadingSortInput = {
+  id?: InputMaybe<SortOrderEnum>;
+  value?: InputMaybe<SortOrderEnum>;
+  depth?: InputMaybe<SortOrderEnum>;
+};
+
+export type MarkdownWordCountSortInput = {
+  paragraphs?: InputMaybe<SortOrderEnum>;
+  sentences?: InputMaybe<SortOrderEnum>;
+  words?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulPostsSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  revision?: InputMaybe<SortOrderEnum>;
+  contentType?: InputMaybe<ContentfulPostsSysContentTypeSortInput>;
+};
+
+export type ContentfulPostsSysContentTypeSortInput = {
+  sys?: InputMaybe<ContentfulPostsSysContentTypeSysSortInput>;
+};
+
+export type ContentfulPostsSysContentTypeSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  linkType?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulPostsExcerptTextNodeSortInput = {
+  id?: InputMaybe<SortOrderEnum>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+  excerpt?: InputMaybe<SortOrderEnum>;
+  sys?: InputMaybe<ContentfulPostsExcerptTextNodeSysSortInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
+};
+
+export type ContentfulPostsExcerptTextNodeSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+};
+
 export type ImageSharpConnection = {
   totalCount: Scalars['Int'];
   edges: Array<ImageSharpEdge>;
@@ -2322,9 +3567,414 @@ export type ImageSharpGroupConnectionGroupArgs = {
   field: ImageSharpFieldSelector;
 };
 
+export type MarkdownRemarkConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<MarkdownRemarkEdge>;
+  nodes: Array<MarkdownRemark>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<MarkdownRemarkGroupConnection>;
+};
+
+
+export type MarkdownRemarkConnectionDistinctArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkConnectionMaxArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkConnectionMinArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkConnectionSumArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: MarkdownRemarkFieldSelector;
+};
+
+export type MarkdownRemarkEdge = {
+  next?: Maybe<MarkdownRemark>;
+  node: MarkdownRemark;
+  previous?: Maybe<MarkdownRemark>;
+};
+
+export type MarkdownRemarkGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<MarkdownRemarkEdge>;
+  nodes: Array<MarkdownRemark>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<MarkdownRemarkGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type MarkdownRemarkGroupConnectionDistinctArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkGroupConnectionMaxArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkGroupConnectionMinArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkGroupConnectionSumArgs = {
+  field: MarkdownRemarkFieldSelector;
+};
+
+
+export type MarkdownRemarkGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: MarkdownRemarkFieldSelector;
+};
+
+export type ContentfulPostsPostBodyTextNodeConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulPostsPostBodyTextNodeEdge>;
+  nodes: Array<ContentfulPostsPostBodyTextNode>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulPostsPostBodyTextNodeGroupConnection>;
+};
+
+
+export type ContentfulPostsPostBodyTextNodeConnectionDistinctArgs = {
+  field: ContentfulPostsPostBodyTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsPostBodyTextNodeConnectionMaxArgs = {
+  field: ContentfulPostsPostBodyTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsPostBodyTextNodeConnectionMinArgs = {
+  field: ContentfulPostsPostBodyTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsPostBodyTextNodeConnectionSumArgs = {
+  field: ContentfulPostsPostBodyTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsPostBodyTextNodeConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulPostsPostBodyTextNodeFieldSelector;
+};
+
+export type ContentfulPostsPostBodyTextNodeEdge = {
+  next?: Maybe<ContentfulPostsPostBodyTextNode>;
+  node: ContentfulPostsPostBodyTextNode;
+  previous?: Maybe<ContentfulPostsPostBodyTextNode>;
+};
+
+export type ContentfulPostsPostBodyTextNodeGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulPostsPostBodyTextNodeEdge>;
+  nodes: Array<ContentfulPostsPostBodyTextNode>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulPostsPostBodyTextNodeGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentfulPostsPostBodyTextNodeGroupConnectionDistinctArgs = {
+  field: ContentfulPostsPostBodyTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsPostBodyTextNodeGroupConnectionMaxArgs = {
+  field: ContentfulPostsPostBodyTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsPostBodyTextNodeGroupConnectionMinArgs = {
+  field: ContentfulPostsPostBodyTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsPostBodyTextNodeGroupConnectionSumArgs = {
+  field: ContentfulPostsPostBodyTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsPostBodyTextNodeGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulPostsPostBodyTextNodeFieldSelector;
+};
+
+export type ContentfulPostsExcerptTextNodeConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulPostsExcerptTextNodeEdge>;
+  nodes: Array<ContentfulPostsExcerptTextNode>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulPostsExcerptTextNodeGroupConnection>;
+};
+
+
+export type ContentfulPostsExcerptTextNodeConnectionDistinctArgs = {
+  field: ContentfulPostsExcerptTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsExcerptTextNodeConnectionMaxArgs = {
+  field: ContentfulPostsExcerptTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsExcerptTextNodeConnectionMinArgs = {
+  field: ContentfulPostsExcerptTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsExcerptTextNodeConnectionSumArgs = {
+  field: ContentfulPostsExcerptTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsExcerptTextNodeConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulPostsExcerptTextNodeFieldSelector;
+};
+
+export type ContentfulPostsExcerptTextNodeEdge = {
+  next?: Maybe<ContentfulPostsExcerptTextNode>;
+  node: ContentfulPostsExcerptTextNode;
+  previous?: Maybe<ContentfulPostsExcerptTextNode>;
+};
+
+export type ContentfulPostsExcerptTextNodeGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulPostsExcerptTextNodeEdge>;
+  nodes: Array<ContentfulPostsExcerptTextNode>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulPostsExcerptTextNodeGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentfulPostsExcerptTextNodeGroupConnectionDistinctArgs = {
+  field: ContentfulPostsExcerptTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsExcerptTextNodeGroupConnectionMaxArgs = {
+  field: ContentfulPostsExcerptTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsExcerptTextNodeGroupConnectionMinArgs = {
+  field: ContentfulPostsExcerptTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsExcerptTextNodeGroupConnectionSumArgs = {
+  field: ContentfulPostsExcerptTextNodeFieldSelector;
+};
+
+
+export type ContentfulPostsExcerptTextNodeGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulPostsExcerptTextNodeFieldSelector;
+};
+
+export type ContentfulContentTypeSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulContentTypeConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulContentTypeEdge>;
+  nodes: Array<ContentfulContentType>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulContentTypeGroupConnection>;
+};
+
+
+export type ContentfulContentTypeConnectionDistinctArgs = {
+  field: ContentfulContentTypeFieldSelector;
+};
+
+
+export type ContentfulContentTypeConnectionMaxArgs = {
+  field: ContentfulContentTypeFieldSelector;
+};
+
+
+export type ContentfulContentTypeConnectionMinArgs = {
+  field: ContentfulContentTypeFieldSelector;
+};
+
+
+export type ContentfulContentTypeConnectionSumArgs = {
+  field: ContentfulContentTypeFieldSelector;
+};
+
+
+export type ContentfulContentTypeConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulContentTypeFieldSelector;
+};
+
+export type ContentfulContentTypeEdge = {
+  next?: Maybe<ContentfulContentType>;
+  node: ContentfulContentType;
+  previous?: Maybe<ContentfulContentType>;
+};
+
+export type ContentfulContentTypeFieldSelector = {
+  id?: InputMaybe<FieldSelectorEnum>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+  name?: InputMaybe<FieldSelectorEnum>;
+  displayField?: InputMaybe<FieldSelectorEnum>;
+  description?: InputMaybe<FieldSelectorEnum>;
+  sys?: InputMaybe<ContentfulContentTypeSysFieldSelector>;
+};
+
+export type ContentfulContentTypeSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type ContentfulContentTypeGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulContentTypeEdge>;
+  nodes: Array<ContentfulContentType>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulContentTypeGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentfulContentTypeGroupConnectionDistinctArgs = {
+  field: ContentfulContentTypeFieldSelector;
+};
+
+
+export type ContentfulContentTypeGroupConnectionMaxArgs = {
+  field: ContentfulContentTypeFieldSelector;
+};
+
+
+export type ContentfulContentTypeGroupConnectionMinArgs = {
+  field: ContentfulContentTypeFieldSelector;
+};
+
+
+export type ContentfulContentTypeGroupConnectionSumArgs = {
+  field: ContentfulContentTypeFieldSelector;
+};
+
+
+export type ContentfulContentTypeGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulContentTypeFieldSelector;
+};
+
+export type ContentfulContentTypeFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  name?: InputMaybe<StringQueryOperatorInput>;
+  displayField?: InputMaybe<StringQueryOperatorInput>;
+  description?: InputMaybe<StringQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulContentTypeSysFilterInput>;
+};
+
+export type ContentfulContentTypeSortInput = {
+  id?: InputMaybe<SortOrderEnum>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+  name?: InputMaybe<SortOrderEnum>;
+  displayField?: InputMaybe<SortOrderEnum>;
+  description?: InputMaybe<SortOrderEnum>;
+  sys?: InputMaybe<ContentfulContentTypeSysSortInput>;
+};
+
+export type ContentfulContentTypeSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+};
+
 export type HeaderFragment = { file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
 
 export type PageLayoutFragment = { file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
+
+export type FeaturedPostFragmentFragment = { node: { id: string, title?: string | null, route?: string | null, excerpt?: { childMarkdownRemark?: { html?: string | null } | null } | null } };
+
+export type FeaturedPostsFragmentFragment = { allContentfulPosts: { edges: Array<{ node: { id: string, title?: string | null, route?: string | null, excerpt?: { childMarkdownRemark?: { html?: string | null } | null } | null } }> } };
+
+export type BlogQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type BlogQueryQuery = { allContentfulPosts: { edges: Array<{ node: { id: string, title?: string | null, route?: string | null, excerpt?: { childMarkdownRemark?: { html?: string | null } | null } | null } }> }, file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
+
+export type BlogPostPageQueryVariables = Exact<{
+  route?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type BlogPostPageQuery = { contentfulPosts?: { id: string, route?: string | null, title?: string | null, author?: string | null, excerpt?: { childMarkdownRemark?: { html?: string | null } | null } | null, postBody?: { childMarkdownRemark?: { html?: string | null } | null } | null } | null, file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
 
 export type IndexQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

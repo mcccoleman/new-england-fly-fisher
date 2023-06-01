@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { NAVIGATION_LINKS } from "./navigationUtils";
-import { Link } from "gatsby";
 import { Flex } from "../flex";
 import styled from "styled-components";
 import { H4 } from "../typography";
@@ -15,6 +14,7 @@ const DesktopNavigationWrapper = styled(Flex)`
   @media (max-width: 600px) {
     display: none;
   }
+  gap: 20px;
 `;
 
 interface DesktopNavigationProps {}
