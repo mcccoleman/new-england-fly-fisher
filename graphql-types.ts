@@ -534,12 +534,13 @@ export type ContentfulPosts = ContentfulReference & ContentfulEntry & Node & {
   route?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   author?: Maybe<Scalars['String']>;
+  publishDate?: Maybe<Scalars['Date']>;
+  excerpt?: Maybe<ContentfulPostsExcerptTextNode>;
   postBody?: Maybe<ContentfulPostsPostBodyTextNode>;
   spaceId?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['Date']>;
   updatedAt?: Maybe<Scalars['Date']>;
   sys?: Maybe<ContentfulPostsSys>;
-  excerpt?: Maybe<ContentfulPostsExcerptTextNode>;
   gatsbyPath?: Maybe<Scalars['String']>;
   /** Returns all children nodes filtered by type contentfulPostsPostBodyTextNode */
   childrenContentfulPostsPostBodyTextNode?: Maybe<Array<Maybe<ContentfulPostsPostBodyTextNode>>>;
@@ -552,6 +553,14 @@ export type ContentfulPosts = ContentfulReference & ContentfulEntry & Node & {
   parent?: Maybe<Node>;
   children: Array<Node>;
   internal: Internal;
+};
+
+
+export type ContentfulPostsPublishDateArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -1277,12 +1286,13 @@ export type QueryContentfulPostsArgs = {
   route?: InputMaybe<StringQueryOperatorInput>;
   title?: InputMaybe<StringQueryOperatorInput>;
   author?: InputMaybe<StringQueryOperatorInput>;
+  publishDate?: InputMaybe<DateQueryOperatorInput>;
+  excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
   postBody?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
   spaceId?: InputMaybe<StringQueryOperatorInput>;
   createdAt?: InputMaybe<DateQueryOperatorInput>;
   updatedAt?: InputMaybe<DateQueryOperatorInput>;
   sys?: InputMaybe<ContentfulPostsSysFilterInput>;
-  excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
   gatsbyPath?: InputMaybe<StringQueryOperatorInput>;
   childrenContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterListInput>;
   childContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
@@ -3073,18 +3083,18 @@ export type RemoteFileResizeSortInput = {
   src?: InputMaybe<SortOrderEnum>;
 };
 
-export type ContentfulPostsPostBodyTextNodeFilterInput = {
+export type ContentfulPostsExcerptTextNodeFilterInput = {
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
   internal?: InputMaybe<InternalFilterInput>;
-  postBody?: InputMaybe<StringQueryOperatorInput>;
-  sys?: InputMaybe<ContentfulPostsPostBodyTextNodeSysFilterInput>;
+  excerpt?: InputMaybe<StringQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulPostsExcerptTextNodeSysFilterInput>;
   childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
   childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
 };
 
-export type ContentfulPostsPostBodyTextNodeSysFilterInput = {
+export type ContentfulPostsExcerptTextNodeSysFilterInput = {
   type?: InputMaybe<StringQueryOperatorInput>;
 };
 
@@ -3129,6 +3139,21 @@ export type MarkdownWordCountFilterInput = {
   words?: InputMaybe<IntQueryOperatorInput>;
 };
 
+export type ContentfulPostsPostBodyTextNodeFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  postBody?: InputMaybe<StringQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulPostsPostBodyTextNodeSysFilterInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
+};
+
+export type ContentfulPostsPostBodyTextNodeSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+};
+
 export type ContentfulPostsSysFilterInput = {
   type?: InputMaybe<StringQueryOperatorInput>;
   revision?: InputMaybe<IntQueryOperatorInput>;
@@ -3143,21 +3168,6 @@ export type ContentfulPostsSysContentTypeSysFilterInput = {
   type?: InputMaybe<StringQueryOperatorInput>;
   linkType?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
-};
-
-export type ContentfulPostsExcerptTextNodeFilterInput = {
-  id?: InputMaybe<StringQueryOperatorInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-  excerpt?: InputMaybe<StringQueryOperatorInput>;
-  sys?: InputMaybe<ContentfulPostsExcerptTextNodeSysFilterInput>;
-  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
-  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
-};
-
-export type ContentfulPostsExcerptTextNodeSysFilterInput = {
-  type?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type ContentfulPostsPostBodyTextNodeFilterListInput = {
@@ -3220,12 +3230,13 @@ export type ContentfulPostsFieldSelector = {
   route?: InputMaybe<FieldSelectorEnum>;
   title?: InputMaybe<FieldSelectorEnum>;
   author?: InputMaybe<FieldSelectorEnum>;
+  publishDate?: InputMaybe<FieldSelectorEnum>;
+  excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeFieldSelector>;
   postBody?: InputMaybe<ContentfulPostsPostBodyTextNodeFieldSelector>;
   spaceId?: InputMaybe<FieldSelectorEnum>;
   createdAt?: InputMaybe<FieldSelectorEnum>;
   updatedAt?: InputMaybe<FieldSelectorEnum>;
   sys?: InputMaybe<ContentfulPostsSysFieldSelector>;
-  excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeFieldSelector>;
   gatsbyPath?: InputMaybe<FieldSelectorEnum>;
   childrenContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFieldSelector>;
   childContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFieldSelector>;
@@ -3236,18 +3247,18 @@ export type ContentfulPostsFieldSelector = {
   internal?: InputMaybe<InternalFieldSelector>;
 };
 
-export type ContentfulPostsPostBodyTextNodeFieldSelector = {
+export type ContentfulPostsExcerptTextNodeFieldSelector = {
   id?: InputMaybe<FieldSelectorEnum>;
   parent?: InputMaybe<NodeFieldSelector>;
   children?: InputMaybe<NodeFieldSelector>;
   internal?: InputMaybe<InternalFieldSelector>;
-  postBody?: InputMaybe<FieldSelectorEnum>;
-  sys?: InputMaybe<ContentfulPostsPostBodyTextNodeSysFieldSelector>;
+  excerpt?: InputMaybe<FieldSelectorEnum>;
+  sys?: InputMaybe<ContentfulPostsExcerptTextNodeSysFieldSelector>;
   childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
   childMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
 };
 
-export type ContentfulPostsPostBodyTextNodeSysFieldSelector = {
+export type ContentfulPostsExcerptTextNodeSysFieldSelector = {
   type?: InputMaybe<FieldSelectorEnum>;
 };
 
@@ -3284,6 +3295,21 @@ export type MarkdownWordCountFieldSelector = {
   words?: InputMaybe<FieldSelectorEnum>;
 };
 
+export type ContentfulPostsPostBodyTextNodeFieldSelector = {
+  id?: InputMaybe<FieldSelectorEnum>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+  postBody?: InputMaybe<FieldSelectorEnum>;
+  sys?: InputMaybe<ContentfulPostsPostBodyTextNodeSysFieldSelector>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
+};
+
+export type ContentfulPostsPostBodyTextNodeSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+};
+
 export type ContentfulPostsSysFieldSelector = {
   type?: InputMaybe<FieldSelectorEnum>;
   revision?: InputMaybe<FieldSelectorEnum>;
@@ -3298,21 +3324,6 @@ export type ContentfulPostsSysContentTypeSysFieldSelector = {
   type?: InputMaybe<FieldSelectorEnum>;
   linkType?: InputMaybe<FieldSelectorEnum>;
   id?: InputMaybe<FieldSelectorEnum>;
-};
-
-export type ContentfulPostsExcerptTextNodeFieldSelector = {
-  id?: InputMaybe<FieldSelectorEnum>;
-  parent?: InputMaybe<NodeFieldSelector>;
-  children?: InputMaybe<NodeFieldSelector>;
-  internal?: InputMaybe<InternalFieldSelector>;
-  excerpt?: InputMaybe<FieldSelectorEnum>;
-  sys?: InputMaybe<ContentfulPostsExcerptTextNodeSysFieldSelector>;
-  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
-  childMarkdownRemark?: InputMaybe<MarkdownRemarkFieldSelector>;
-};
-
-export type ContentfulPostsExcerptTextNodeSysFieldSelector = {
-  type?: InputMaybe<FieldSelectorEnum>;
 };
 
 export type ContentfulPostsGroupConnection = {
@@ -3363,12 +3374,13 @@ export type ContentfulPostsFilterInput = {
   route?: InputMaybe<StringQueryOperatorInput>;
   title?: InputMaybe<StringQueryOperatorInput>;
   author?: InputMaybe<StringQueryOperatorInput>;
+  publishDate?: InputMaybe<DateQueryOperatorInput>;
+  excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
   postBody?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
   spaceId?: InputMaybe<StringQueryOperatorInput>;
   createdAt?: InputMaybe<DateQueryOperatorInput>;
   updatedAt?: InputMaybe<DateQueryOperatorInput>;
   sys?: InputMaybe<ContentfulPostsSysFilterInput>;
-  excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
   gatsbyPath?: InputMaybe<StringQueryOperatorInput>;
   childrenContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterListInput>;
   childContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
@@ -3386,12 +3398,13 @@ export type ContentfulPostsSortInput = {
   route?: InputMaybe<SortOrderEnum>;
   title?: InputMaybe<SortOrderEnum>;
   author?: InputMaybe<SortOrderEnum>;
+  publishDate?: InputMaybe<SortOrderEnum>;
+  excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeSortInput>;
   postBody?: InputMaybe<ContentfulPostsPostBodyTextNodeSortInput>;
   spaceId?: InputMaybe<SortOrderEnum>;
   createdAt?: InputMaybe<SortOrderEnum>;
   updatedAt?: InputMaybe<SortOrderEnum>;
   sys?: InputMaybe<ContentfulPostsSysSortInput>;
-  excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeSortInput>;
   gatsbyPath?: InputMaybe<SortOrderEnum>;
   childrenContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeSortInput>;
   childContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeSortInput>;
@@ -3402,18 +3415,18 @@ export type ContentfulPostsSortInput = {
   internal?: InputMaybe<InternalSortInput>;
 };
 
-export type ContentfulPostsPostBodyTextNodeSortInput = {
+export type ContentfulPostsExcerptTextNodeSortInput = {
   id?: InputMaybe<SortOrderEnum>;
   parent?: InputMaybe<NodeSortInput>;
   children?: InputMaybe<NodeSortInput>;
   internal?: InputMaybe<InternalSortInput>;
-  postBody?: InputMaybe<SortOrderEnum>;
-  sys?: InputMaybe<ContentfulPostsPostBodyTextNodeSysSortInput>;
+  excerpt?: InputMaybe<SortOrderEnum>;
+  sys?: InputMaybe<ContentfulPostsExcerptTextNodeSysSortInput>;
   childrenMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
   childMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
 };
 
-export type ContentfulPostsPostBodyTextNodeSysSortInput = {
+export type ContentfulPostsExcerptTextNodeSysSortInput = {
   type?: InputMaybe<SortOrderEnum>;
 };
 
@@ -3450,6 +3463,21 @@ export type MarkdownWordCountSortInput = {
   words?: InputMaybe<SortOrderEnum>;
 };
 
+export type ContentfulPostsPostBodyTextNodeSortInput = {
+  id?: InputMaybe<SortOrderEnum>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+  postBody?: InputMaybe<SortOrderEnum>;
+  sys?: InputMaybe<ContentfulPostsPostBodyTextNodeSysSortInput>;
+  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
+  childMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
+};
+
+export type ContentfulPostsPostBodyTextNodeSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+};
+
 export type ContentfulPostsSysSortInput = {
   type?: InputMaybe<SortOrderEnum>;
   revision?: InputMaybe<SortOrderEnum>;
@@ -3464,21 +3492,6 @@ export type ContentfulPostsSysContentTypeSysSortInput = {
   type?: InputMaybe<SortOrderEnum>;
   linkType?: InputMaybe<SortOrderEnum>;
   id?: InputMaybe<SortOrderEnum>;
-};
-
-export type ContentfulPostsExcerptTextNodeSortInput = {
-  id?: InputMaybe<SortOrderEnum>;
-  parent?: InputMaybe<NodeSortInput>;
-  children?: InputMaybe<NodeSortInput>;
-  internal?: InputMaybe<InternalSortInput>;
-  excerpt?: InputMaybe<SortOrderEnum>;
-  sys?: InputMaybe<ContentfulPostsExcerptTextNodeSysSortInput>;
-  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
-  childMarkdownRemark?: InputMaybe<MarkdownRemarkSortInput>;
-};
-
-export type ContentfulPostsExcerptTextNodeSysSortInput = {
-  type?: InputMaybe<SortOrderEnum>;
 };
 
 export type ImageSharpConnection = {
@@ -3960,21 +3973,21 @@ export type HeaderFragment = { file?: { childImageSharp?: { fixed?: { base64?: s
 
 export type PageLayoutFragment = { file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
 
-export type FeaturedPostFragmentFragment = { node: { id: string, title?: string | null, route?: string | null, excerpt?: { childMarkdownRemark?: { html?: string | null } | null } | null } };
+export type FeaturedPostFragmentFragment = { node: { id: string, title?: string | null, route?: string | null, publishDate?: any | null, excerpt?: { childMarkdownRemark?: { html?: string | null } | null } | null } };
 
-export type FeaturedPostsFragmentFragment = { allContentfulPosts: { edges: Array<{ node: { id: string, title?: string | null, route?: string | null, excerpt?: { childMarkdownRemark?: { html?: string | null } | null } | null } }> } };
+export type FeaturedPostsFragmentFragment = { allContentfulPosts: { edges: Array<{ node: { id: string, title?: string | null, route?: string | null, publishDate?: any | null, excerpt?: { childMarkdownRemark?: { html?: string | null } | null } | null } }> } };
 
 export type BlogQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type BlogQueryQuery = { allContentfulPosts: { edges: Array<{ node: { id: string, title?: string | null, route?: string | null, excerpt?: { childMarkdownRemark?: { html?: string | null } | null } | null } }> }, file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
+export type BlogQueryQuery = { allContentfulPosts: { edges: Array<{ node: { id: string, title?: string | null, route?: string | null, publishDate?: any | null, excerpt?: { childMarkdownRemark?: { html?: string | null } | null } | null } }> }, file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
 
 export type BlogPostPageQueryVariables = Exact<{
   route?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type BlogPostPageQuery = { contentfulPosts?: { id: string, route?: string | null, title?: string | null, author?: string | null, excerpt?: { childMarkdownRemark?: { html?: string | null } | null } | null, postBody?: { childMarkdownRemark?: { html?: string | null } | null } | null } | null, file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
+export type BlogPostPageQuery = { contentfulPost?: { id: string, route?: string | null, title?: string | null, publishDate?: any | null, author?: string | null, postBody?: { childMarkdownRemark?: { html?: string | null } | null } | null } | null, file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
 
 export type IndexQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

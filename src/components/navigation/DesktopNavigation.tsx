@@ -31,7 +31,6 @@ interface DesktopNavigationProps {}
 
 export const DesktopNavigation: FC<DesktopNavigationProps> = () => {
   const location = useLocation();
-  console.log(location);
   return (
     <DesktopNavigationWrapper alignItems="end" justifyContent="center">
       {NAVIGATION_LINKS.map(({ link, title }) => (

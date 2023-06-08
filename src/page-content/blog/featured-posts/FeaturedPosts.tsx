@@ -13,11 +13,8 @@ const StyledFlex = styled(Flex)`
 
 export const featuredPostsFragment = graphql`
   fragment FeaturedPostsFragment on Query {
-    allContentfulPosts(sort: { updatedAt: ASC }, limit: 10) {
+    allContentfulPosts(sort: { publishDate: ASC }, limit: 10) {
       edges {
-        node {
-          id
-        }
         ...FeaturedPostFragment
       }
     }

@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import { Flex } from "../flex";
 import styled from "styled-components";
 
