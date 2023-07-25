@@ -56,6 +56,9 @@ const config: GatsbyConfig = {
         icon: "static/images/logo.png",
       },
     },
+    {
+      resolve: `gatsby-plugin-styled-components`,
+    },
   ],
 };
 
