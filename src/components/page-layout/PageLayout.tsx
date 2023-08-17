@@ -45,6 +45,6 @@ export const PageLayout: FC<LayoutProps> = ({
     <HeaderWrapper>
       <Header data={data} titleOverride={titleOverride} />
     </HeaderWrapper>
-    <PageContentWrapper>{children}</PageContentWrapper>
+    <PageContentWrapper column>{children}</PageContentWrapper>
   </Flex>
 );

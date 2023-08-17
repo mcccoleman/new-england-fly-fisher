@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@types/styled-components": "^5.1.26",
+    "axios": "^1.4.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "gatsby": "^5.7.0",
     "gatsby-image": "^3.11.0",
