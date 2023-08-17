@@ -32,13 +32,11 @@ const IndexPage: FC<IndexProps> = ({ data }) => (
           celebrate fly fishing in New England.
         </Paragraph>
         <Paragraph>Some possible ideas include the following:</Paragraph>
-        <Paragraph>
-          <ul>
-            <li>River Reports</li>
-            <li>Blog Content</li>
-            <li>River Webcam</li>
-          </ul>
-        </Paragraph>
+        <ul>
+          <li>River Reports</li>
+          <li>Blog Content</li>
+          <li>River Webcam</li>
+        </ul>
         <Paragraph>
           If you're interested in contributing, please email Michael Coleman at{" "}
           <a href="mailto:colemanmc02@gmail.com.">colemanmc02@gmail.com.</a>
