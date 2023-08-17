@@ -17,7 +17,7 @@ interface Values {
   value: Value[];
 }
 
-interface Metrics {
+export interface Metrics {
   name: string;
   variable: Varaible;
   values: Values[];
@@ -34,7 +34,7 @@ interface SourceInfo {
   siteCode: SiteCode[];
 }
 
-interface ResponseData {
+export interface ResponseData {
   sourceInfo: SourceInfo;
   metrics: Metrics[];
 }

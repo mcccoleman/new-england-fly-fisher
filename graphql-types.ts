@@ -3994,10 +3994,40 @@ export type IndexQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type IndexQueryQuery = { file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
 
+export type CtRiverDataQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CtRiverDataQueryQuery = { file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
+
 export type RiverDataQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type RiverDataQueryQuery = { file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
+
+export type MaRiverDataQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MaRiverDataQueryQuery = { file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
+
+export type MeRiverDataQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MeRiverDataQueryQuery = { file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
+
+export type NhRiverDataQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type NhRiverDataQueryQuery = { file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
+
+export type RiRiverDataQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RiRiverDataQueryQuery = { file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
+
+export type VtRiverDataQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type VtRiverDataQueryQuery = { file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
 
 export type StockingReportQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
