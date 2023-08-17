@@ -3994,6 +3994,11 @@ export type IndexQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type IndexQueryQuery = { file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
 
+export type RiverDataQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RiverDataQueryQuery = { file?: { childImageSharp?: { fixed?: { base64?: string | null, width: number, height: number, src: string, srcSet: string } | null } | null } | null };
+
 export type StockingReportQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
