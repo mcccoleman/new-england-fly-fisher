@@ -1,60 +1,24 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { axiosHeaders } from "./sharedNetworkDetails";
 
-interface UnitCode {
-  unitCode: string;
+export interface useGetRiverDataReturnValues<T> {
+  response: T | null;
+  error: string;
+  loading: boolean;
 }
 
-interface Varaible {
-  unit: UnitCode;
-}
-
-interface Value {
-  value: string;
-}
-
-interface Values {
-  value: Value[];
-}
-
-export interface Metrics {
-  name: string;
-  variable: Varaible;
-  values: Values[];
-}
-
-interface SiteCode {
-  value: string;
-  network: string;
-  agencyCode: string;
-}
-
-interface SourceInfo {
-  siteName: string;
-  siteCode: SiteCode[];
-}
-
-export interface ResponseData {
-  sourceInfo: SourceInfo;
-  metrics: Metrics[];
-}
-
-export const useGetRiverData = (state: string) => {
-  const [response, setResponse] = useState<ResponseData[] | null>(null);
+export const useGetRiverData = <T,>(
+  endPoint: string
+): useGetRiverDataReturnValues<T> => {
+  const [response, setResponse] = useState<null>(null);
   const [error, setError] = useState("");
-  const [loading, setloading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
-  const fetchData = () => {
+  const fetchData = () =>
     axios
-      .get(`https://river-data-9b4002c324d3.herokuapp.com/state/${state}`, {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods":
-            "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers":
-            "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset, boundary, Content-Length",
-        },
+      .get(`${process.env.GATSBY_RIVER_DATA_ENDPOINT}/${endPoint}`, {
+        headers: axiosHeaders,
       })
       .then((res) => {
         setResponse(res.data);
@@ -63,9 +27,8 @@ export const useGetRiverData = (state: string) => {
         setError(err);
       })
       .finally(() => {
-        setloading(false);
+        setLoading(false);
       });
-  };
 
   useEffect(() => {
     fetchData();

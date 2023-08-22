@@ -1,6 +1,6 @@
-import { Metrics, ResponseData } from "src/hooks/useGetRiverData";
+import { Metrics, LocationData } from "src/hooks/useGetStateRiverData";
 
-export const alphebetizeSites = (sites: ResponseData[]) =>
+export const alphabetizeSites = (sites: LocationData[]) =>
   sites.sort((a, b) => {
     if (a.sourceInfo.siteName < b.sourceInfo.siteName) {
       return -1;
