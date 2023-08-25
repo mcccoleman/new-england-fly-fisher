@@ -4,6 +4,7 @@ import { PageLayout } from "src/components/page-layout";
 import { graphql } from "gatsby";
 import { RiverDataQueryQuery as RiverDataQuery } from "graphql-types";
 import { StateRiverDataSection } from "src/page-content/river-data/StateRiverDataSection";
+import { DataDisclaimer } from "src/page-content/river-data/DataDisclaimer";
 
 export const riverDataQuery = graphql`
   query RiverDataQuery {
@@ -26,6 +27,7 @@ interface RiverDataProps {
 
 const RiverData: FC<RiverDataProps> = ({ data }) => (
   <PageLayout data={data} titleOverride="River Data">
+    <DataDisclaimer />
     {stateDetails.map((state, index) => (
       <StateRiverDataSection key={index} {...state} enableClickToStatePage />
     ))}
