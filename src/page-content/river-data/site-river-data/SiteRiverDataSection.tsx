@@ -23,8 +23,13 @@ export const SiteRiverDataSection: FC<SiteRiverDataSectionProps> = ({
       <H1>{stateTitle}</H1>
       <H2>{siteName}</H2>
       <SecondaryCard column>
-        {metrics.map(({ statistic, value, unit }) => (
-          <SiteStatistic statistic={statistic} value={value} unit={unit} />
+        {metrics.map(({ statistic, value, unit }, idx) => (
+          <SiteStatistic
+            statistic={statistic}
+            value={value}
+            unit={unit}
+            key={idx}
+          />
         ))}
       </SecondaryCard>
     </>

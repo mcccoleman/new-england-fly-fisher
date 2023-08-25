@@ -36,7 +36,7 @@ export const StateRiverDataSection: FC<StateRiverDataSectionProps> = ({
       ) : (
         <H1>{stateTitle}</H1>
       )}
-      {sortedSites.map((values) => {
+      {sortedSites.map((values, idx) => {
         const discharge = values.metrics.find(
           (value) => value.variable.unit.unitCode === "ft3/s"
         );
@@ -46,6 +46,7 @@ export const StateRiverDataSection: FC<StateRiverDataSectionProps> = ({
         return (
           <StyledLink
             to={`/river-data/${stateCode}/${values.sourceInfo.siteCode[0].value}`}
+            key={idx}
           >
             <Flex justifyContent="space-between">
               <H4 key={values.sourceInfo.siteCode[0].value}>
