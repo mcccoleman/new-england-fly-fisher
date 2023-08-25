@@ -14,12 +14,17 @@ export const siteData = graphql`
 
 interface SiteDataProps {
   data: SiteDataQuery;
-  pageContext: { siteCode: string; stateCode: string; stateTitle: string };
+  pageContext: {
+    siteCode: string;
+    siteName: string;
+    stateCode: string;
+    stateTitle: string;
+  };
 }
 
 const SiteData: FC<SiteDataProps> = ({
   data,
-  pageContext: { siteCode, stateCode, stateTitle },
+  pageContext: { siteCode, stateCode, stateTitle, siteName },
 }) => {
   const { response } = useGetSiteData(siteCode);
 
@@ -41,9 +46,9 @@ const SiteData: FC<SiteDataProps> = ({
 export default SiteData;
 
 export const Head: FC<SiteDataProps> = ({
-  pageContext: { stateCode, siteCode },
+  pageContext: { stateCode, siteName },
 }) => (
   <title>
-    {stateCode.toUpperCase()} {siteCode}
+    {stateCode.toUpperCase()} {siteName}
   </title>
 );

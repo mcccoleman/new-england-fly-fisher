@@ -42,10 +42,11 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
     for (const site of sites) {
       const siteCode = site.sourceInfo.siteCode[0].value;
+      const siteName = site.sourceInfo.siteName;
       createPage({
         path: `/river-data/${stateCode}/${siteCode}`,
         component: path.resolve("src/templates/SiteData.tsx"),
-        context: { stateCode, stateTitle, siteCode },
+        context: { stateCode, stateTitle, siteCode, siteName },
       });
     }
   }
