@@ -19,7 +19,7 @@
     "@types/styled-components": "^5.1.26",
     "axios": "^1.4.0",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "gatsby": "^5.9.1",
+    "gatsby": "^5.12.1",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-google-analytics": "^5.9.0",
     "gatsby-plugin-google-gtag": "^5.9.0",
