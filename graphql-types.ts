@@ -247,7 +247,11 @@ export type Site = Node & {
   siteMetadata?: Maybe<SiteSiteMetadata>;
   port?: Maybe<Scalars['Int']>;
   host?: Maybe<Scalars['String']>;
-  default?: Maybe<SiteDefault>;
+  graphqlTypegen?: Maybe<SiteGraphqlTypegen>;
+  polyfill?: Maybe<Scalars['Boolean']>;
+  pathPrefix?: Maybe<Scalars['String']>;
+  jsxRuntime?: Maybe<Scalars['String']>;
+  trailingSlash?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -262,19 +266,16 @@ export type SiteBuildTimeArgs = {
   locale?: InputMaybe<Scalars['String']>;
 };
 
-export type SiteDefault = {
-  siteMetadata?: Maybe<SiteDefaultSiteMetadata>;
-  graphqlTypegen?: Maybe<Scalars['Boolean']>;
-};
-
-export type SiteDefaultSiteMetadata = {
-  title?: Maybe<Scalars['String']>;
-  siteUrl?: Maybe<Scalars['String']>;
+export type SiteGraphqlTypegen = {
+  typesOutputPath?: Maybe<Scalars['String']>;
+  documentSearchPaths?: Maybe<Array<Maybe<Scalars['String']>>>;
+  generateOnBuild?: Maybe<Scalars['Boolean']>;
 };
 
 export type SiteSiteMetadata = {
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
+  siteUrl?: Maybe<Scalars['String']>;
 };
 
 export type SiteFunction = Node & {
@@ -1126,7 +1127,11 @@ export type QuerySiteArgs = {
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
   port?: InputMaybe<IntQueryOperatorInput>;
   host?: InputMaybe<StringQueryOperatorInput>;
-  default?: InputMaybe<SiteDefaultFilterInput>;
+  graphqlTypegen?: InputMaybe<SiteGraphqlTypegenFilterInput>;
+  polyfill?: InputMaybe<BooleanQueryOperatorInput>;
+  pathPrefix?: InputMaybe<StringQueryOperatorInput>;
+  jsxRuntime?: InputMaybe<StringQueryOperatorInput>;
+  trailingSlash?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -2134,16 +2139,13 @@ export type DirectorySortInput = {
 export type SiteSiteMetadataFilterInput = {
   title?: InputMaybe<StringQueryOperatorInput>;
   description?: InputMaybe<StringQueryOperatorInput>;
-};
-
-export type SiteDefaultFilterInput = {
-  siteMetadata?: InputMaybe<SiteDefaultSiteMetadataFilterInput>;
-  graphqlTypegen?: InputMaybe<BooleanQueryOperatorInput>;
-};
-
-export type SiteDefaultSiteMetadataFilterInput = {
-  title?: InputMaybe<StringQueryOperatorInput>;
   siteUrl?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type SiteGraphqlTypegenFilterInput = {
+  typesOutputPath?: InputMaybe<StringQueryOperatorInput>;
+  documentSearchPaths?: InputMaybe<StringQueryOperatorInput>;
+  generateOnBuild?: InputMaybe<BooleanQueryOperatorInput>;
 };
 
 export type SiteConnection = {
@@ -2196,7 +2198,11 @@ export type SiteFieldSelector = {
   siteMetadata?: InputMaybe<SiteSiteMetadataFieldSelector>;
   port?: InputMaybe<FieldSelectorEnum>;
   host?: InputMaybe<FieldSelectorEnum>;
-  default?: InputMaybe<SiteDefaultFieldSelector>;
+  graphqlTypegen?: InputMaybe<SiteGraphqlTypegenFieldSelector>;
+  polyfill?: InputMaybe<FieldSelectorEnum>;
+  pathPrefix?: InputMaybe<FieldSelectorEnum>;
+  jsxRuntime?: InputMaybe<FieldSelectorEnum>;
+  trailingSlash?: InputMaybe<FieldSelectorEnum>;
   id?: InputMaybe<FieldSelectorEnum>;
   parent?: InputMaybe<NodeFieldSelector>;
   children?: InputMaybe<NodeFieldSelector>;
@@ -2206,16 +2212,13 @@ export type SiteFieldSelector = {
 export type SiteSiteMetadataFieldSelector = {
   title?: InputMaybe<FieldSelectorEnum>;
   description?: InputMaybe<FieldSelectorEnum>;
-};
-
-export type SiteDefaultFieldSelector = {
-  siteMetadata?: InputMaybe<SiteDefaultSiteMetadataFieldSelector>;
-  graphqlTypegen?: InputMaybe<FieldSelectorEnum>;
-};
-
-export type SiteDefaultSiteMetadataFieldSelector = {
-  title?: InputMaybe<FieldSelectorEnum>;
   siteUrl?: InputMaybe<FieldSelectorEnum>;
+};
+
+export type SiteGraphqlTypegenFieldSelector = {
+  typesOutputPath?: InputMaybe<FieldSelectorEnum>;
+  documentSearchPaths?: InputMaybe<FieldSelectorEnum>;
+  generateOnBuild?: InputMaybe<FieldSelectorEnum>;
 };
 
 export type SiteGroupConnection = {
@@ -2264,7 +2267,11 @@ export type SiteFilterInput = {
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
   port?: InputMaybe<IntQueryOperatorInput>;
   host?: InputMaybe<StringQueryOperatorInput>;
-  default?: InputMaybe<SiteDefaultFilterInput>;
+  graphqlTypegen?: InputMaybe<SiteGraphqlTypegenFilterInput>;
+  polyfill?: InputMaybe<BooleanQueryOperatorInput>;
+  pathPrefix?: InputMaybe<StringQueryOperatorInput>;
+  jsxRuntime?: InputMaybe<StringQueryOperatorInput>;
+  trailingSlash?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -2276,7 +2283,11 @@ export type SiteSortInput = {
   siteMetadata?: InputMaybe<SiteSiteMetadataSortInput>;
   port?: InputMaybe<SortOrderEnum>;
   host?: InputMaybe<SortOrderEnum>;
-  default?: InputMaybe<SiteDefaultSortInput>;
+  graphqlTypegen?: InputMaybe<SiteGraphqlTypegenSortInput>;
+  polyfill?: InputMaybe<SortOrderEnum>;
+  pathPrefix?: InputMaybe<SortOrderEnum>;
+  jsxRuntime?: InputMaybe<SortOrderEnum>;
+  trailingSlash?: InputMaybe<SortOrderEnum>;
   id?: InputMaybe<SortOrderEnum>;
   parent?: InputMaybe<NodeSortInput>;
   children?: InputMaybe<NodeSortInput>;
@@ -2286,16 +2297,13 @@ export type SiteSortInput = {
 export type SiteSiteMetadataSortInput = {
   title?: InputMaybe<SortOrderEnum>;
   description?: InputMaybe<SortOrderEnum>;
-};
-
-export type SiteDefaultSortInput = {
-  siteMetadata?: InputMaybe<SiteDefaultSiteMetadataSortInput>;
-  graphqlTypegen?: InputMaybe<SortOrderEnum>;
-};
-
-export type SiteDefaultSiteMetadataSortInput = {
-  title?: InputMaybe<SortOrderEnum>;
   siteUrl?: InputMaybe<SortOrderEnum>;
+};
+
+export type SiteGraphqlTypegenSortInput = {
+  typesOutputPath?: InputMaybe<SortOrderEnum>;
+  documentSearchPaths?: InputMaybe<SortOrderEnum>;
+  generateOnBuild?: InputMaybe<SortOrderEnum>;
 };
 
 export type SiteFunctionConnection = {

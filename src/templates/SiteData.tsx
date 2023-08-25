@@ -4,7 +4,7 @@ import React, { FC } from "react";
 import { PageLayout } from "src/components/page-layout";
 import useGetSiteData from "src/hooks/useGetSiteData";
 import { DataDisclaimer } from "src/page-content/river-data/DataDisclaimer";
-import { SiteRiverDataSection } from "src/page-content/river-data/SiteRiverDataSection";
+import { SiteRiverDataSection } from "src/page-content/river-data/site-river-data/SiteRiverDataSection";
 
 export const siteData = graphql`
   query SiteDataQuery {
