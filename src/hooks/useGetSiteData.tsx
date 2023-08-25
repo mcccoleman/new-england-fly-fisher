@@ -1,7 +1,11 @@
 import { useGetRiverData } from "./useGetRiverData";
 
 interface ValuesProp {
-  variable: { unit: { unitCode: string }; variableName: string };
+  variable: {
+    unit: { unitCode: string };
+    variableName: string;
+    variableDescription: string;
+  };
   values: { value: { value: string }[] }[];
   sourceInfo: { siteName: string };
 }
@@ -10,16 +14,12 @@ interface ValueProps {
   timeSeries: ValuesProp[];
 }
 
-interface Data {
+export interface SiteData {
   value: ValueProps;
 }
 
-interface ResponseData {
-  response: Data;
-}
-
 export const useGetSiteData = (site: string) => {
-  const { response, error, loading } = useGetRiverData<ResponseData>(
+  const { response, error, loading } = useGetRiverData<SiteData>(
     `/site/${site}`
   );
 
