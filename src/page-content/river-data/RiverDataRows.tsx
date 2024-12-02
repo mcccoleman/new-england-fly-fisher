@@ -14,32 +14,28 @@ interface RiverDataRowsProps {
 export const RiverDataRows: FC<RiverDataRowsProps> = ({
   stateCode,
   response,
-}) => {
-  const sortedSites = alphabetizeSites(response);
+}) => (
+  <>
+    {alphabetizeSites(response).map((values, idx) => {
+      const discharge = values.metrics.find(
+        (value) => value.variable.unit.unitCode === "ft3/s"
+      );
 
-  return (
-    <>
-      {sortedSites.map((values, idx) => {
-        const discharge = values.metrics.find(
-          (value) => value.variable.unit.unitCode === "ft3/s"
-        );
+      if (!shouldDisplaySite(discharge)) return null;
 
-        if (!shouldDisplaySite(discharge)) return null;
-
-        return (
-          <StyledLink
-            to={`/river-data/${stateCode}/${values.sourceInfo.siteCode[0].value}`}
-            key={idx}
-          >
-            <Flex justifyContent="space-between">
-              <H4 key={values.sourceInfo.siteCode[0].value}>
-                {values.sourceInfo.siteName}
-              </H4>
-              <H4>{discharge?.values[0].value[0].value} ft3/s</H4>
-            </Flex>
-          </StyledLink>
-        );
-      })}
-    </>
-  );
-};
+      return (
+        <StyledLink
+          to={`/river-data/${stateCode}/${values.sourceInfo.siteCode[0].value}`}
+          key={idx}
+        >
+          <Flex justifyContent="space-between">
+            <H4 key={values.sourceInfo.siteCode[0].value}>
+              {values.sourceInfo.siteName}
+            </H4>
+            <H4>{discharge?.values[0].value[0].value} ft3/s</H4>
+          </Flex>
+        </StyledLink>
+      );
+    })}
+  </>
+);
