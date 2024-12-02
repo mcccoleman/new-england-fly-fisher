@@ -7,7 +7,15 @@ interface ValuesProp {
     variableDescription: string;
   };
   values: { value: { value: string }[] }[];
-  sourceInfo: { siteName: string };
+  sourceInfo: {
+    siteName: string;
+    geoLocation: {
+      geogLocation: {
+        latitude?: string;
+        longitude?: string;
+      };
+    };
+  };
 }
 
 interface ValueProps {

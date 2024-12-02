@@ -5,6 +5,7 @@ import { useGetStateRiverData } from "src/hooks/useGetStateRiverData";
 import styled from "styled-components";
 import { alphabetizeSites, shouldDisplaySite } from "./stateRiverDataUtils";
 import { StyledLink } from "src/components/navigation/shared";
+import { StateCode } from "src/pages/river-data";
 
 const StyledFlex = styled(Flex)`
   width: 100%;
@@ -12,7 +13,7 @@ const StyledFlex = styled(Flex)`
 
 interface StateRiverDataSectionProps {
   stateTitle: string;
-  stateCode: string;
+  stateCode: StateCode;
   enableClickToStatePage?: boolean;
 }
 

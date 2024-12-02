@@ -4,6 +4,7 @@ import { SiteData } from "src/hooks/useGetSiteData";
 import { SiteStatistic } from "../SiteStatistic";
 import { SecondaryCard } from "src/components/cards";
 import { formatSiteStatistics } from "./siteRiverDataSectionUtils";
+import { SiteMap } from "../SiteMap";
 
 interface SiteRiverDataSectionProps {
   stateTitle: string;
@@ -16,7 +17,8 @@ export const SiteRiverDataSection: FC<SiteRiverDataSectionProps> = ({
   responseData,
   stateTitle,
 }) => {
-  const { siteName, metrics } = formatSiteStatistics(responseData);
+  const { siteName, metrics, latitude, longitude } =
+    formatSiteStatistics(responseData);
 
   return (
     <>
@@ -32,6 +34,9 @@ export const SiteRiverDataSection: FC<SiteRiverDataSectionProps> = ({
           />
         ))}
       </SecondaryCard>
+      {!!(longitude && latitude) && (
+        <SiteMap latitude={latitude} longitude={longitude} />
+      )}
     </>
   );
 };

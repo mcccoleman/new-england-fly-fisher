@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import { RiverDataQueryQuery as RiverDataQuery } from "graphql-types";
 import { StateRiverDataSection } from "src/page-content/river-data/StateRiverDataSection";
 import { DataDisclaimer } from "src/page-content/river-data/DataDisclaimer";
+import { StateCode } from "src/pages/river-data";
 
 export const riversInState = graphql`
   query RiverDataQuery {
@@ -13,7 +14,7 @@ export const riversInState = graphql`
 
 interface RiverDataProps {
   data: RiverDataQuery;
-  pageContext: { stateCode: string; stateTitle: string };
+  pageContext: { stateCode: StateCode; stateTitle: string };
 }
 
 const RiversInState: FC<RiverDataProps> = ({
