@@ -535,6 +535,7 @@ export type ContentfulPosts = ContentfulReference & ContentfulEntry & Node & {
   title?: Maybe<Scalars['String']>;
   author?: Maybe<Scalars['String']>;
   publishDate?: Maybe<Scalars['Date']>;
+  category?: Maybe<ContentfulCategories>;
   excerpt?: Maybe<ContentfulPostsExcerptTextNode>;
   postBody?: Maybe<ContentfulPostsPostBodyTextNode>;
   spaceId?: Maybe<Scalars['String']>;
@@ -595,6 +596,53 @@ export type ContentfulPostsSysContentType = {
 };
 
 export type ContentfulPostsSysContentTypeSys = {
+  type?: Maybe<Scalars['String']>;
+  linkType?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulCategories = ContentfulReference & ContentfulEntry & Node & {
+  contentful_id: Scalars['String'];
+  id: Scalars['ID'];
+  node_locale: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
+  posts?: Maybe<Array<Maybe<ContentfulPosts>>>;
+  spaceId?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['Date']>;
+  sys?: Maybe<ContentfulCategoriesSys>;
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+};
+
+
+export type ContentfulCategoriesCreatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type ContentfulCategoriesUpdatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type ContentfulCategoriesSys = {
+  type?: Maybe<Scalars['String']>;
+  revision?: Maybe<Scalars['Int']>;
+  contentType?: Maybe<ContentfulCategoriesSysContentType>;
+};
+
+export type ContentfulCategoriesSysContentType = {
+  sys?: Maybe<ContentfulCategoriesSysContentTypeSys>;
+};
+
+export type ContentfulCategoriesSysContentTypeSys = {
   type?: Maybe<Scalars['String']>;
   linkType?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
@@ -1010,6 +1058,8 @@ export type Query = {
   allContentfulAsset: ContentfulAssetConnection;
   contentfulPosts?: Maybe<ContentfulPosts>;
   allContentfulPosts: ContentfulPostsConnection;
+  contentfulCategories?: Maybe<ContentfulCategories>;
+  allContentfulCategories: ContentfulCategoriesConnection;
   imageSharp?: Maybe<ImageSharp>;
   allImageSharp: ImageSharpConnection;
   markdownRemark?: Maybe<MarkdownRemark>;
@@ -1287,6 +1337,7 @@ export type QueryContentfulPostsArgs = {
   title?: InputMaybe<StringQueryOperatorInput>;
   author?: InputMaybe<StringQueryOperatorInput>;
   publishDate?: InputMaybe<DateQueryOperatorInput>;
+  category?: InputMaybe<ContentfulCategoriesFilterInput>;
   excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
   postBody?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
   spaceId?: InputMaybe<StringQueryOperatorInput>;
@@ -1307,6 +1358,30 @@ export type QueryContentfulPostsArgs = {
 export type QueryAllContentfulPostsArgs = {
   filter?: InputMaybe<ContentfulPostsFilterInput>;
   sort?: InputMaybe<Array<InputMaybe<ContentfulPostsSortInput>>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryContentfulCategoriesArgs = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  title?: InputMaybe<StringQueryOperatorInput>;
+  posts?: InputMaybe<ContentfulPostsFilterListInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulCategoriesSysFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+
+export type QueryAllContentfulCategoriesArgs = {
+  filter?: InputMaybe<ContentfulCategoriesFilterInput>;
+  sort?: InputMaybe<Array<InputMaybe<ContentfulCategoriesSortInput>>>;
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
 };
@@ -3083,6 +3158,50 @@ export type RemoteFileResizeSortInput = {
   src?: InputMaybe<SortOrderEnum>;
 };
 
+export type ContentfulCategoriesFilterInput = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  title?: InputMaybe<StringQueryOperatorInput>;
+  posts?: InputMaybe<ContentfulPostsFilterListInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulCategoriesSysFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type ContentfulPostsFilterListInput = {
+  elemMatch?: InputMaybe<ContentfulPostsFilterInput>;
+};
+
+export type ContentfulPostsFilterInput = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  route?: InputMaybe<StringQueryOperatorInput>;
+  title?: InputMaybe<StringQueryOperatorInput>;
+  author?: InputMaybe<StringQueryOperatorInput>;
+  publishDate?: InputMaybe<DateQueryOperatorInput>;
+  category?: InputMaybe<ContentfulCategoriesFilterInput>;
+  excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
+  postBody?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulPostsSysFilterInput>;
+  gatsbyPath?: InputMaybe<StringQueryOperatorInput>;
+  childrenContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterListInput>;
+  childContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
+  childrenContentfulPostsExcerptTextNode?: InputMaybe<ContentfulPostsExcerptTextNodeFilterListInput>;
+  childContentfulPostsExcerptTextNode?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
 export type ContentfulPostsExcerptTextNodeFilterInput = {
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
@@ -3178,6 +3297,22 @@ export type ContentfulPostsExcerptTextNodeFilterListInput = {
   elemMatch?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
 };
 
+export type ContentfulCategoriesSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  revision?: InputMaybe<IntQueryOperatorInput>;
+  contentType?: InputMaybe<ContentfulCategoriesSysContentTypeFilterInput>;
+};
+
+export type ContentfulCategoriesSysContentTypeFilterInput = {
+  sys?: InputMaybe<ContentfulCategoriesSysContentTypeSysFilterInput>;
+};
+
+export type ContentfulCategoriesSysContentTypeSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  linkType?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+};
+
 export type ContentfulPostsConnection = {
   totalCount: Scalars['Int'];
   edges: Array<ContentfulPostsEdge>;
@@ -3231,6 +3366,7 @@ export type ContentfulPostsFieldSelector = {
   title?: InputMaybe<FieldSelectorEnum>;
   author?: InputMaybe<FieldSelectorEnum>;
   publishDate?: InputMaybe<FieldSelectorEnum>;
+  category?: InputMaybe<ContentfulCategoriesFieldSelector>;
   excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeFieldSelector>;
   postBody?: InputMaybe<ContentfulPostsPostBodyTextNodeFieldSelector>;
   spaceId?: InputMaybe<FieldSelectorEnum>;
@@ -3245,6 +3381,37 @@ export type ContentfulPostsFieldSelector = {
   parent?: InputMaybe<NodeFieldSelector>;
   children?: InputMaybe<NodeFieldSelector>;
   internal?: InputMaybe<InternalFieldSelector>;
+};
+
+export type ContentfulCategoriesFieldSelector = {
+  contentful_id?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
+  node_locale?: InputMaybe<FieldSelectorEnum>;
+  title?: InputMaybe<FieldSelectorEnum>;
+  posts?: InputMaybe<ContentfulPostsFieldSelector>;
+  spaceId?: InputMaybe<FieldSelectorEnum>;
+  createdAt?: InputMaybe<FieldSelectorEnum>;
+  updatedAt?: InputMaybe<FieldSelectorEnum>;
+  sys?: InputMaybe<ContentfulCategoriesSysFieldSelector>;
+  parent?: InputMaybe<NodeFieldSelector>;
+  children?: InputMaybe<NodeFieldSelector>;
+  internal?: InputMaybe<InternalFieldSelector>;
+};
+
+export type ContentfulCategoriesSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  revision?: InputMaybe<FieldSelectorEnum>;
+  contentType?: InputMaybe<ContentfulCategoriesSysContentTypeFieldSelector>;
+};
+
+export type ContentfulCategoriesSysContentTypeFieldSelector = {
+  sys?: InputMaybe<ContentfulCategoriesSysContentTypeSysFieldSelector>;
+};
+
+export type ContentfulCategoriesSysContentTypeSysFieldSelector = {
+  type?: InputMaybe<FieldSelectorEnum>;
+  linkType?: InputMaybe<FieldSelectorEnum>;
+  id?: InputMaybe<FieldSelectorEnum>;
 };
 
 export type ContentfulPostsExcerptTextNodeFieldSelector = {
@@ -3367,30 +3534,6 @@ export type ContentfulPostsGroupConnectionGroupArgs = {
   field: ContentfulPostsFieldSelector;
 };
 
-export type ContentfulPostsFilterInput = {
-  contentful_id?: InputMaybe<StringQueryOperatorInput>;
-  id?: InputMaybe<StringQueryOperatorInput>;
-  node_locale?: InputMaybe<StringQueryOperatorInput>;
-  route?: InputMaybe<StringQueryOperatorInput>;
-  title?: InputMaybe<StringQueryOperatorInput>;
-  author?: InputMaybe<StringQueryOperatorInput>;
-  publishDate?: InputMaybe<DateQueryOperatorInput>;
-  excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
-  postBody?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
-  spaceId?: InputMaybe<StringQueryOperatorInput>;
-  createdAt?: InputMaybe<DateQueryOperatorInput>;
-  updatedAt?: InputMaybe<DateQueryOperatorInput>;
-  sys?: InputMaybe<ContentfulPostsSysFilterInput>;
-  gatsbyPath?: InputMaybe<StringQueryOperatorInput>;
-  childrenContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterListInput>;
-  childContentfulPostsPostBodyTextNode?: InputMaybe<ContentfulPostsPostBodyTextNodeFilterInput>;
-  childrenContentfulPostsExcerptTextNode?: InputMaybe<ContentfulPostsExcerptTextNodeFilterListInput>;
-  childContentfulPostsExcerptTextNode?: InputMaybe<ContentfulPostsExcerptTextNodeFilterInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-};
-
 export type ContentfulPostsSortInput = {
   contentful_id?: InputMaybe<SortOrderEnum>;
   id?: InputMaybe<SortOrderEnum>;
@@ -3399,6 +3542,7 @@ export type ContentfulPostsSortInput = {
   title?: InputMaybe<SortOrderEnum>;
   author?: InputMaybe<SortOrderEnum>;
   publishDate?: InputMaybe<SortOrderEnum>;
+  category?: InputMaybe<ContentfulCategoriesSortInput>;
   excerpt?: InputMaybe<ContentfulPostsExcerptTextNodeSortInput>;
   postBody?: InputMaybe<ContentfulPostsPostBodyTextNodeSortInput>;
   spaceId?: InputMaybe<SortOrderEnum>;
@@ -3413,6 +3557,37 @@ export type ContentfulPostsSortInput = {
   parent?: InputMaybe<NodeSortInput>;
   children?: InputMaybe<NodeSortInput>;
   internal?: InputMaybe<InternalSortInput>;
+};
+
+export type ContentfulCategoriesSortInput = {
+  contentful_id?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
+  node_locale?: InputMaybe<SortOrderEnum>;
+  title?: InputMaybe<SortOrderEnum>;
+  posts?: InputMaybe<ContentfulPostsSortInput>;
+  spaceId?: InputMaybe<SortOrderEnum>;
+  createdAt?: InputMaybe<SortOrderEnum>;
+  updatedAt?: InputMaybe<SortOrderEnum>;
+  sys?: InputMaybe<ContentfulCategoriesSysSortInput>;
+  parent?: InputMaybe<NodeSortInput>;
+  children?: InputMaybe<NodeSortInput>;
+  internal?: InputMaybe<InternalSortInput>;
+};
+
+export type ContentfulCategoriesSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  revision?: InputMaybe<SortOrderEnum>;
+  contentType?: InputMaybe<ContentfulCategoriesSysContentTypeSortInput>;
+};
+
+export type ContentfulCategoriesSysContentTypeSortInput = {
+  sys?: InputMaybe<ContentfulCategoriesSysContentTypeSysSortInput>;
+};
+
+export type ContentfulCategoriesSysContentTypeSysSortInput = {
+  type?: InputMaybe<SortOrderEnum>;
+  linkType?: InputMaybe<SortOrderEnum>;
+  id?: InputMaybe<SortOrderEnum>;
 };
 
 export type ContentfulPostsExcerptTextNodeSortInput = {
@@ -3492,6 +3667,92 @@ export type ContentfulPostsSysContentTypeSysSortInput = {
   type?: InputMaybe<SortOrderEnum>;
   linkType?: InputMaybe<SortOrderEnum>;
   id?: InputMaybe<SortOrderEnum>;
+};
+
+export type ContentfulCategoriesConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulCategoriesEdge>;
+  nodes: Array<ContentfulCategories>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulCategoriesGroupConnection>;
+};
+
+
+export type ContentfulCategoriesConnectionDistinctArgs = {
+  field: ContentfulCategoriesFieldSelector;
+};
+
+
+export type ContentfulCategoriesConnectionMaxArgs = {
+  field: ContentfulCategoriesFieldSelector;
+};
+
+
+export type ContentfulCategoriesConnectionMinArgs = {
+  field: ContentfulCategoriesFieldSelector;
+};
+
+
+export type ContentfulCategoriesConnectionSumArgs = {
+  field: ContentfulCategoriesFieldSelector;
+};
+
+
+export type ContentfulCategoriesConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulCategoriesFieldSelector;
+};
+
+export type ContentfulCategoriesEdge = {
+  next?: Maybe<ContentfulCategories>;
+  node: ContentfulCategories;
+  previous?: Maybe<ContentfulCategories>;
+};
+
+export type ContentfulCategoriesGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulCategoriesEdge>;
+  nodes: Array<ContentfulCategories>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulCategoriesGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentfulCategoriesGroupConnectionDistinctArgs = {
+  field: ContentfulCategoriesFieldSelector;
+};
+
+
+export type ContentfulCategoriesGroupConnectionMaxArgs = {
+  field: ContentfulCategoriesFieldSelector;
+};
+
+
+export type ContentfulCategoriesGroupConnectionMinArgs = {
+  field: ContentfulCategoriesFieldSelector;
+};
+
+
+export type ContentfulCategoriesGroupConnectionSumArgs = {
+  field: ContentfulCategoriesFieldSelector;
+};
+
+
+export type ContentfulCategoriesGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulCategoriesFieldSelector;
 };
 
 export type ImageSharpConnection = {

@@ -1,3 +1,4 @@
+import { StateCode } from "src/pages/river-data";
 import { useGetRiverData } from "./useGetRiverData";
 
 interface UnitCode {
@@ -38,7 +39,7 @@ export interface LocationData {
   metrics: Metrics[];
 }
 
-export const useGetStateRiverData = (state: string) => {
+export const useGetStateRiverData = (state: StateCode) => {
   const { response, error, loading } = useGetRiverData<LocationData[]>(
     `/state/${state}`
   );

@@ -1,4 +1,5 @@
 import { Metrics, LocationData } from "src/hooks/useGetStateRiverData";
+import { times, sample } from "lodash";
 
 export const alphabetizeSites = (sites: LocationData[]) =>
   sites.sort((a, b) => {
@@ -17,3 +18,12 @@ export const shouldDisplaySite = (discharge?: Metrics) => {
 
   return true;
 };
+
+export const generateRandomString = (length: number) => {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  return times(length, () => sample(characters)).join("");
+};
+
+export const generateRandomInteger = (max: number, min: number) =>
+  Math.floor(Math.random() * (max - min + 1)) + min;

@@ -12,13 +12,22 @@ export const riverDataQuery = graphql`
   }
 `;
 
+export enum StateCode {
+  CT = "ct",
+  ME = "me",
+  MA = "ma",
+  NH = "nh",
+  RI = "ri",
+  VT = "vt",
+}
+
 const stateDetails = [
-  { stateCode: "ct", stateTitle: "Connecticut" },
-  { stateCode: "me", stateTitle: "Maine" },
-  { stateCode: "ma", stateTitle: "Massachusetts" },
-  { stateCode: "nh", stateTitle: "New Hampshire" },
-  { stateCode: "ri", stateTitle: "Rhode Island" },
-  { stateCode: "vt", stateTitle: "Vermont" },
+  { stateCode: StateCode.CT, stateTitle: "Connecticut" },
+  { stateCode: StateCode.ME, stateTitle: "Maine" },
+  { stateCode: StateCode.MA, stateTitle: "Massachusetts" },
+  { stateCode: StateCode.NH, stateTitle: "New Hampshire" },
+  { stateCode: StateCode.RI, stateTitle: "Rhode Island" },
+  { stateCode: StateCode.VT, stateTitle: "Vermont" },
 ];
 
 interface RiverDataProps {
