@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { alphabetizeSites, shouldDisplaySite } from "./stateRiverDataUtils";
 import { StyledLink } from "src/components/navigation/shared";
 import { StateCode } from "src/pages/river-data";
+import { RiverDataRows } from "./RiverDataRows";
+import { RiverDataLoading } from "./RiverDataLoading";
 
 const StyledFlex = styled(Flex)`
   width: 100%;
@@ -22,11 +24,7 @@ export const StateRiverDataSection: FC<StateRiverDataSectionProps> = ({
   stateTitle,
   enableClickToStatePage = false,
 }) => {
-  const { response } = useGetStateRiverData(stateCode);
-
-  if (!response) return null;
-
-  const sortedSites = alphabetizeSites(response);
+  const { response, loading } = useGetStateRiverData(stateCode);
 
   return (
     <StyledFlex column>
@@ -37,27 +35,11 @@ export const StateRiverDataSection: FC<StateRiverDataSectionProps> = ({
       ) : (
         <H1>{stateTitle}</H1>
       )}
-      {sortedSites.map((values, idx) => {
-        const discharge = values.metrics.find(
-          (value) => value.variable.unit.unitCode === "ft3/s"
-        );
-
-        if (!shouldDisplaySite(discharge)) return null;
-
-        return (
-          <StyledLink
-            to={`/river-data/${stateCode}/${values.sourceInfo.siteCode[0].value}`}
-            key={idx}
-          >
-            <Flex justifyContent="space-between">
-              <H4 key={values.sourceInfo.siteCode[0].value}>
-                {values.sourceInfo.siteName}
-              </H4>
-              <H4>{discharge?.values[0].value[0].value} ft3/s</H4>
-            </Flex>
-          </StyledLink>
-        );
-      })}
+      {response && !loading ? (
+        <RiverDataRows response={response} stateCode={stateCode} />
+      ) : (
+        <RiverDataLoading defaultLoadingRows={25} />
+      )}
     </StyledFlex>
   );
 };
