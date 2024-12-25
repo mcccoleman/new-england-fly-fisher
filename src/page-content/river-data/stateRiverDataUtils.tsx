@@ -13,8 +13,12 @@ export const alphabetizeSites = (sites: LocationData[]) =>
   });
 
 export const shouldDisplaySite = (discharge?: Metrics) => {
-  if (!discharge) return false;
-  if (discharge.values[0].value[0].value === "-999999") return false;
+  if (
+    discharge &&
+    (discharge.values[0].value[0].value === "-999999" ||
+      discharge.values[0].value[0].value === undefined)
+  )
+    return false;
 
   return true;
 };
@@ -27,3 +31,14 @@ export const generateRandomString = (length: number) => {
 
 export const generateRandomInteger = (max: number, min: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
+
+const flatten = (arr: any[]) => {
+  return [].concat(...arr);
+};
+
+export const locationHasIce = (values: LocationData) =>
+  !!flatten(
+    values.metrics
+      .map((val) => val.values.map((val) => val.qualifier))
+      .reduce((a, b) => a.concat(b), [])
+  ).find((val) => (val as unknown as any).qualifierCode === "Ice");

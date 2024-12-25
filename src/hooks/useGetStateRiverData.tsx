@@ -5,21 +5,27 @@ interface UnitCode {
   unitCode: string;
 }
 
-interface Varaible {
+interface Variable {
   unit: UnitCode;
+}
+
+interface Qualifier {
+  qualifierCode: string;
 }
 
 interface Value {
   value: string;
+  qualifier: Qualifier[];
 }
 
 interface Values {
   value: Value[];
+  qualifier: Qualifier[];
 }
 
 export interface Metrics {
   name: string;
-  variable: Varaible;
+  variable: Variable;
   values: Values[];
 }
 

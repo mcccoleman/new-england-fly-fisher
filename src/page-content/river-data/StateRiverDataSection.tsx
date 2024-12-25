@@ -3,7 +3,6 @@ import { Flex } from "src/components/flex";
 import { H1, H4 } from "src/components/typography";
 import { useGetStateRiverData } from "src/hooks/useGetStateRiverData";
 import styled from "styled-components";
-import { alphabetizeSites, shouldDisplaySite } from "./stateRiverDataUtils";
 import { StyledLink } from "src/components/navigation/shared";
 import { StateCode } from "src/pages/river-data";
 import { RiverDataRows } from "./RiverDataRows";
