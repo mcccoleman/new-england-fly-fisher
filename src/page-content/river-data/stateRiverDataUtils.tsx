@@ -1,5 +1,6 @@
 import { Metrics, LocationData } from "src/hooks/useGetStateRiverData";
 import { times, sample } from "lodash";
+import React from "react";
 
 export const alphabetizeSites = (sites: LocationData[]) =>
   sites.sort((a, b) => {
@@ -42,3 +43,24 @@ export const locationHasIce = (values: LocationData) =>
       .map((val) => val.values.map((val) => val.qualifier))
       .reduce((a, b) => a.concat(b), [])
   ).find((val) => (val as unknown as any).qualifierCode === "Ice");
+
+export const formatCopyResponse = (values: LocationData) => {
+  const discharge = values.metrics.find(
+    (value) => value.variable.unit.unitCode === "ft3/s"
+  );
+
+  const hasIce = locationHasIce(values);
+  const dataIsUnknown =
+    !shouldDisplaySite(discharge) ||
+    discharge?.values[0].value[0].value === undefined;
+
+  return (
+    <>
+      {dataIsUnknown
+        ? "Unavailable"
+        : hasIce
+        ? "Frozen"
+        : `${discharge?.values[0].value[0].value} ft3/s`}
+    </>
+  );
+};
